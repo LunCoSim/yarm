@@ -205,7 +205,7 @@ class AttributeValueReal extends AttributeValueSimple {
 
 class AttributeValueString extends AttributeValueSimple {
     theValue: String;
-    defaultValue: AttributeValueString;
+    defaultValue: AttributeDefinitionString;
 }
 
 //------------------------------------------------------------------------------
