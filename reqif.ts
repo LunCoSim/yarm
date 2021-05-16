@@ -58,6 +58,11 @@ class AttributeValue {
     specElAt: SpecElementWithAttributes[];
 }
 
+class AttributeDefinition {
+    specType: SpecType;
+
+}
+
 //------------------------------------------------------------------------------
 //SpecElementWithAttributes
 
@@ -73,55 +78,183 @@ class SpecType extends Identifiable {
 }
 
 class SpecificationType extends SpecType {
-    specification: Specification;
+    specification: Specification[];
 }
 
 class SpecObjectType extends SpecType {
-    specObject: SpecObject;
+    specObject: SpecObject[];
 }
 
 class SpecRelationType extends SpecType {
-    specRelation: SpecRelation;
+    specRelation: SpecRelation[];
 }
 
 class RelationGroupType extends SpecType {
-    relationGroup: RelationGroup;
+    relationGroup: RelationGroup[];
 }
-
 
 //------------------------------------------------------------------------------
 //Fields of ReqIFContent
 
-class DatatypeDefinition {
-
-}
-
 class SpecObject extends SpecElementWithAttributes {
-    types: SpecObjectType[];//*
+    type: SpecObjectType;
+
+    object: SpecHierarchy;
+
+    source: SpecRelation; //Global shared object, maybe in external source e.g. wikipedia 
+    target: SpecRelation; //Global shared object, maybe in external source e.g. wikipedia 
+
 }
 
 class SpecRelation extends SpecElementWithAttributes {
-    types: SpecRelationType[];//*
+    type: SpecRelationType;
+    
+    specRelations: RelationGroup[];
 }
 
 class Specification extends SpecElementWithAttributes {
-    types: SpecificationType[];//*
+    type: SpecificationType;
+    
+    root: SpecHierarchy;
+
+    sourceSpecification: RelationGroup;
+    targetSpecificaiton: RelationGroup;
 }
 
 class RelationGroup extends SpecElementWithAttributes {
-    types: RelationGroupType[];//*
+    type: RelationGroupType;
     specRelations: SpecRelation[];
 }
 
 //------------------------------------------------------------------------------
-//Fields of ReqIFToolExtension
+//Fields of AttributeDefinition
 
-class AttributeDefinition {
-    specType: SpecType;
+class AttributeDefinitionXHTML extends AttributeDefinition {
 
 }
 
+class AttributeDefinitionEnumeration extends AttributeDefinition {
+    multiValued: Boolean;
+    
+}
+
+class AttributeDefinitionSimple extends AttributeDefinition {
+    
+}
+
+class AttributeDefinitionBoolean extends AttributeDefinitionSimple {
+    definition: AttributeValueBoolean;
+    owningDefinition: AttributeValueBoolean;
+}
+
+class AttributeDefinitionDate extends AttributeDefinitionSimple {
+    
+}
+
+class AttributeDefinitionInteger extends AttributeDefinitionSimple {
+    
+}
+
+class AttributeDefinitionReal extends AttributeDefinitionSimple {
+    
+}
+
+class AttributeDefinitionString extends AttributeDefinitionSimple {
+    
+}
+
 //------------------------------------------------------------------------------
-//Inheritad classes of SpecType
+//Inheritad classes of AttributeValue
 
+class AttributeValueXHTML extends AttributeValue {
+    isSimplified: Boolean;
+}
 
+class AttributeValueEnumeration extends AttributeValue {
+    
+}
+
+class AttributeValueSimple extends AttributeValue {
+    
+}
+
+class AttributeValueBoolean extends AttributeValueSimple {
+    theValue: Boolean;
+    defaultValue: AttributeDefinitionBoolean;
+}
+
+class AttributeValueDate extends AttributeValueSimple {
+    theValue: Date;
+}
+
+class AttributeValueInteger extends AttributeValueSimple {
+    theValue: BigInteger;
+}
+
+class AttributeValueReal extends AttributeValueSimple {
+    theValue: Number;
+}
+
+class AttributeValueString extends AttributeValueSimple {
+    theValue: String;
+}
+
+//------------------------------------------------------------------------------
+//Inheritad classes of 
+
+class SpecHierarchy extends SpecElementWithAttributes {
+    isTableInternal: Boolean;
+    object: SpecObject;
+    parent: SpecHierarchy;
+    children: Specification[]; //ordered
+    specObjects: SpecObject[];
+}
+
+//------------------------------------------------------------------------------
+//DatatypeDefinition
+
+class DatatypeDefinition {
+    type: AttributeDefinition;
+}
+
+class DatatypeDefinitionSimple extends DatatypeDefinition {
+    type: AttributeDefinitionSimple;
+}
+
+class DatatypeDefinitionEnumeration extends DatatypeDefinition {
+    type: AttributeDefinitionEnumeration;
+}
+
+class DatatypeDefinitionXHTML extends DatatypeDefinition {
+    type: AttributeDefinitionXHTML;
+}
+
+//------------------
+
+class DatatypeDefinitionBoolean extends DatatypeDefinitionSimple {
+    type: AttributeDefinitionBoolean;
+}
+
+class DatatypeDefinitionInteger extends DatatypeDefinitionSimple {
+    type: AttributeDefinitionInteger;
+    max: BigInt;
+    min: BigInt;
+}
+
+class DatatypeDefinitionReal extends DatatypeDefinitionSimple {
+    type: AttributeDefinitionReal;
+
+    accuracy: BigInt;
+    max: Number;
+    min: Number;
+}
+
+class DatatypeDefinitionString extends DatatypeDefinitionSimple {
+    type: AttributeDefinitionString;
+
+    maxLength: BigInt;
+}
+
+class DatatypeDefinitionDate extends DatatypeDefinitionSimple {
+    type: AttributeDefinitionDate;
+}
