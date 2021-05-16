@@ -51,16 +51,25 @@ class AlternativeID {
     ident: Identifiable;
 }
 
+//----------------------
+//Access restriction
+
+abstract class AccessControlledElement extends Identifiable {
+    isEditable: Boolean;
+}
+
+
+
 //------------------------------------------------------------------------------
 //AttributeValue
 
-class AttributeValue {
+abstract class AttributeValue {
     specElAt: SpecElementWithAttributes[];
     defaultValue: AttributeDefinition;
     
 }
 
-class AttributeDefinition {
+abstract class AttributeDefinition extends AccessControlledElement{
     specType: SpecType;
 
     definition: AttributeValue;
@@ -295,10 +304,4 @@ class XhtmlContent {
     theOriginalValue: String;
 }
 
-//------------------------------------------------------------------------------
-//Access restriction
-
-class AccessControlledElement extends Identifiable {
-    isEditable: Boolean
-}
 
