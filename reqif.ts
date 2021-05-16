@@ -134,12 +134,15 @@ class RelationGroup extends SpecElementWithAttributes {
 //Fields of AttributeDefinition
 
 class AttributeDefinitionXHTML extends AttributeDefinition {
-
+    definition: AttributeValueXHTML;
+    owningDefinition: AttributeValueXHTML;
 }
 
 class AttributeDefinitionEnumeration extends AttributeDefinition {
     multiValued: Boolean;
     
+    definition: AttributeValueEnumeration;
+    owningDefinition: AttributeValueEnumeration;
 }
 
 class AttributeDefinitionSimple extends AttributeDefinition {
@@ -173,10 +176,13 @@ class AttributeDefinitionString extends AttributeDefinitionSimple {
 class AttributeValueXHTML extends AttributeValue {
     isSimplified: Boolean;
     defaultValue: AttributeDefinitionXHTML;
+
+    attributeValue: XhtmlContent;
 }
 
 class AttributeValueEnumeration extends AttributeValue {
     defaultValue: AttributeDefinitionEnumeration;
+    values: EnumValue;
 }
 
 class AttributeValueSimple extends AttributeValue {
@@ -232,6 +238,7 @@ class DatatypeDefinitionSimple extends DatatypeDefinition {
 
 class DatatypeDefinitionEnumeration extends DatatypeDefinition {
     type: AttributeDefinitionEnumeration;
+
 }
 
 class DatatypeDefinitionXHTML extends DatatypeDefinition {
@@ -267,3 +274,33 @@ class DatatypeDefinitionString extends DatatypeDefinitionSimple {
 class DatatypeDefinitionDate extends DatatypeDefinitionSimple {
     type: AttributeDefinitionDate;
 }
+
+//--------------
+
+class EnumValue {
+    values: AttributeValueEnumeration;
+    specifiedValues: DatatypeDefinitionEnumeration[];//ordered
+    enumValue: EmbeddedValue
+}
+
+class EmbeddedValue {
+    key: BigInt;
+    otherContent: String;
+}
+
+class XhtmlContent {
+    theValue: String;
+    theOriginalValue: String;
+}
+
+//------------------------------------------------------------------------------
+//Access restriction
+
+class AccessControlledElement extends Identifiable {
+    isEditable: Boolean
+}
+
+class AttributeDefinition extends AccessControlledElement {
+    
+}
+
