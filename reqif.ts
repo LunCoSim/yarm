@@ -65,6 +65,8 @@ class AttributeDefinition {
 
     definition: AttributeValue;
     owningDefinition: AttributeValue;
+
+    editableAttrs: SpecHierarchy;
 }
 
 //------------------------------------------------------------------------------
@@ -298,9 +300,5 @@ class XhtmlContent {
 
 class AccessControlledElement extends Identifiable {
     isEditable: Boolean
-}
-
-class AttributeDefinition extends AccessControlledElement {
-    
 }
 
