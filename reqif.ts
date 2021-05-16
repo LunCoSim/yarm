@@ -56,11 +56,15 @@ class AlternativeID {
 
 class AttributeValue {
     specElAt: SpecElementWithAttributes[];
+    defaultValue: AttributeDefinition;
+    
 }
 
 class AttributeDefinition {
     specType: SpecType;
 
+    definition: AttributeValue;
+    owningDefinition: AttributeValue;
 }
 
 //------------------------------------------------------------------------------
@@ -168,10 +172,11 @@ class AttributeDefinitionString extends AttributeDefinitionSimple {
 
 class AttributeValueXHTML extends AttributeValue {
     isSimplified: Boolean;
+    defaultValue: AttributeDefinitionXHTML;
 }
 
 class AttributeValueEnumeration extends AttributeValue {
-    
+    defaultValue: AttributeDefinitionEnumeration;
 }
 
 class AttributeValueSimple extends AttributeValue {
@@ -185,18 +190,22 @@ class AttributeValueBoolean extends AttributeValueSimple {
 
 class AttributeValueDate extends AttributeValueSimple {
     theValue: Date;
+    defaultValue: AttributeDefinitionDate;
 }
 
 class AttributeValueInteger extends AttributeValueSimple {
     theValue: BigInteger;
+    defaultValue: AttributeDefinitionInteger;
 }
 
 class AttributeValueReal extends AttributeValueSimple {
     theValue: Number;
+    defaultValue: AttributeDefinitionReal;
 }
 
 class AttributeValueString extends AttributeValueSimple {
     theValue: String;
+    defaultValue: AttributeValueString;
 }
 
 //------------------------------------------------------------------------------
