@@ -21,6 +21,8 @@
 
 <script>
   export default {
-    data: () => ({ drawer: null }),
+    data: () => {
+      return ({ drawer: null })
+    },
   }
 </script>
