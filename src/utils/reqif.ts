@@ -3,7 +3,7 @@ class ReqIF {
     theHeader: ReqIFHeader;
     coreContent: ReqIFContent
     toolExtension: ReqIFToolExtension; 
-};
+}
 
 
 //------------------------------------------------------------------------------
