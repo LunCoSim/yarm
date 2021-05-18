@@ -1,5 +1,5 @@
 class ReqIF {
-    lang: String; //[0..1]
+    lang: string; //[0..1]
     theHeader: ReqIFHeader;
     coreContent: ReqIFContent
     toolExtension: ReqIFToolExtension; 
@@ -10,14 +10,14 @@ class ReqIF {
 //Fields of RewIF
 
 class ReqIFHeader {
-    comment: String; //[0..1]
+    comment: string; //[0..1]
     creationTime: Date;
-    identifier: String;
-    repositoryId: String; //[0..1]
-    reqIFToolId: String;
-    reqIFVersion: String; //default = 1
-    sourceToolId: String;
-    title: String
+    identifier: string;
+    repositoryId: string; //[0..1]
+    reqIFToolId: string;
+    reqIFVersion: string; //default = 1
+    sourceToolId: string;
+    title: string
 }
 
 class ReqIFContent {
@@ -38,16 +38,16 @@ class ReqIFToolExtension {
 
 //TODO How to connect Identifiable and AlternativeID???? check page 29 figure 10.2 from ReqIF spec
 class Identifiable {
-    desc: String; //[0..1]
-    identifier: String; //UUID
+    desc: string; //[0..1]
+    identifier: string; //UUID
     lastChange: Date;
-    longName: String; //[0..1];
+    longName: string; //[0..1];
 
     alternativeID: AlternativeID;
 }
 
 class AlternativeID {
-    identifier: String;
+    identifier: string;
     ident: Identifiable;
 }
 
@@ -55,7 +55,7 @@ class AlternativeID {
 //Access restriction
 
 abstract class AccessControlledElement extends Identifiable {
-    isEditable: Boolean;
+    isEditable: boolean;
 }
 
 
@@ -66,7 +66,6 @@ abstract class AccessControlledElement extends Identifiable {
 abstract class AttributeValue {
     specElAt: SpecElementWithAttributes[];
     defaultValue: AttributeDefinition;
-    
 }
 
 abstract class AttributeDefinition extends AccessControlledElement{
@@ -150,7 +149,7 @@ class AttributeDefinitionXHTML extends AttributeDefinition {
 }
 
 class AttributeDefinitionEnumeration extends AttributeDefinition {
-    multiValued: Boolean;
+    multiValued: boolean;
     
     definition: AttributeValueEnumeration;
     owningDefinition: AttributeValueEnumeration;
@@ -185,7 +184,7 @@ class AttributeDefinitionString extends AttributeDefinitionSimple {
 //Inheritad classes of AttributeValue
 
 class AttributeValueXHTML extends AttributeValue {
-    isSimplified: Boolean;
+    isSimplified: boolean;
     defaultValue: AttributeDefinitionXHTML;
 
     attributeValue: XhtmlContent;
@@ -201,7 +200,7 @@ class AttributeValueSimple extends AttributeValue {
 }
 
 class AttributeValueBoolean extends AttributeValueSimple {
-    theValue: Boolean;
+    theValue: boolean;
     defaultValue: AttributeDefinitionBoolean;
 }
 
@@ -216,12 +215,12 @@ class AttributeValueInteger extends AttributeValueSimple {
 }
 
 class AttributeValueReal extends AttributeValueSimple {
-    theValue: Number;
+    theValue: number;
     defaultValue: AttributeDefinitionReal;
 }
 
 class AttributeValueString extends AttributeValueSimple {
-    theValue: String;
+    theValue: string;
     defaultValue: AttributeDefinitionString;
 }
 
@@ -229,7 +228,7 @@ class AttributeValueString extends AttributeValueSimple {
 //Inheritad classes of 
 
 class SpecHierarchy extends SpecElementWithAttributes {
-    isTableInternal: Boolean;
+    isTableInternal: boolean;
     object: SpecObject;
     parent: SpecHierarchy;
     children: Specification[]; //ordered
@@ -272,8 +271,8 @@ class DatatypeDefinitionReal extends DatatypeDefinitionSimple {
     type: AttributeDefinitionReal;
 
     accuracy: BigInt;
-    max: Number;
-    min: Number;
+    max: number;
+    min: number;
 }
 
 class DatatypeDefinitionString extends DatatypeDefinitionSimple {
@@ -296,12 +295,12 @@ class EnumValue {
 
 class EmbeddedValue {
     key: BigInt;
-    otherContent: String;
+    otherContent: string;
 }
 
 class XhtmlContent {
-    theValue: String;
-    theOriginalValue: String;
+    theValue: string;
+    theOriginalValue: string;
 }
 
 
