@@ -1,4 +1,4 @@
-class ReqIF {
+export interface ReqIF {
     lang: string; //[0..1]
     theHeader: ReqIFHeader;
     coreContent: ReqIFContent
@@ -9,7 +9,7 @@ class ReqIF {
 //------------------------------------------------------------------------------
 //Fields of RewIF
 
-class ReqIFHeader {
+export interface ReqIFHeader {
     comment: string; //[0..1]
     creationTime: Date;
     identifier: string;
@@ -20,7 +20,7 @@ class ReqIFHeader {
     title: string
 }
 
-class ReqIFContent {
+export interface ReqIFContent {
     datatypes: DatatypeDefinition[];
     specTypes: SpecType[];
     specObjects: SpecObject[];
@@ -29,7 +29,7 @@ class ReqIFContent {
     specRelationsGroup: RelationGroup[];
 }
 
-class ReqIFToolExtension {
+export interface ReqIFToolExtension {
 
 }
 
@@ -37,7 +37,7 @@ class ReqIFToolExtension {
 //Identifiable
 
 //TODO How to connect Identifiable and AlternativeID???? check page 29 figure 10.2 from ReqIF spec
-class Identifiable {
+export interface Identifiable {
     desc: string; //[0..1]
     identifier: string; //UUID
     lastChange: Date;
@@ -46,7 +46,7 @@ class Identifiable {
     alternativeID: AlternativeID;
 }
 
-class AlternativeID {
+export interface AlternativeID {
     identifier: string;
     ident: Identifiable;
 }
@@ -54,7 +54,8 @@ class AlternativeID {
 //----------------------
 //Access restriction
 
-abstract class AccessControlledElement extends Identifiable {
+//should be abstract class
+export interface AccessControlledElement extends Identifiable {
     isEditable: boolean;
 }
 
@@ -63,12 +64,14 @@ abstract class AccessControlledElement extends Identifiable {
 //------------------------------------------------------------------------------
 //AttributeValue
 
-abstract class AttributeValue {
+//should be abstract class
+export interface AttributeValue {
     specElAt: SpecElementWithAttributes[];
     defaultValue: AttributeDefinition;
 }
 
-abstract class AttributeDefinition extends AccessControlledElement{
+//should be abstract class
+export interface AttributeDefinition extends AccessControlledElement{
     specType: SpecType;
 
     definition: AttributeValue;
@@ -80,37 +83,37 @@ abstract class AttributeDefinition extends AccessControlledElement{
 //------------------------------------------------------------------------------
 //SpecElementWithAttributes
 
-class SpecElementWithAttributes extends Identifiable {
+export interface SpecElementWithAttributes extends Identifiable {
     values: AttributeValue[]
 }
 
 //------------------------------------------------------------------------------
 //Fields of ReqIFContent
 
-class SpecType extends Identifiable {
+export interface SpecType extends Identifiable {
     specAttributes: AttributeDefinition[];
 }
 
-class SpecificationType extends SpecType {
+export interface SpecificationType extends SpecType {
     specification: Specification[];
 }
 
-class SpecObjectType extends SpecType {
+export interface SpecObjectType extends SpecType {
     specObject: SpecObject[];
 }
 
-class SpecRelationType extends SpecType {
+export interface SpecRelationType extends SpecType {
     specRelation: SpecRelation[];
 }
 
-class RelationGroupType extends SpecType {
+export interface RelationGroupType extends SpecType {
     relationGroup: RelationGroup[];
 }
 
 //------------------------------------------------------------------------------
 //Fields of ReqIFContent
 
-class SpecObject extends SpecElementWithAttributes {
+export interface SpecObject extends SpecElementWithAttributes {
     type: SpecObjectType;
 
     object: SpecHierarchy;
@@ -120,13 +123,13 @@ class SpecObject extends SpecElementWithAttributes {
 
 }
 
-class SpecRelation extends SpecElementWithAttributes {
+export interface SpecRelation extends SpecElementWithAttributes {
     type: SpecRelationType;
     
     specRelations: RelationGroup[];
 }
 
-class Specification extends SpecElementWithAttributes {
+export interface Specification extends SpecElementWithAttributes {
     type: SpecificationType;
     
     root: SpecHierarchy;
@@ -135,7 +138,7 @@ class Specification extends SpecElementWithAttributes {
     targetSpecificaiton: RelationGroup;
 }
 
-class RelationGroup extends SpecElementWithAttributes {
+export interface RelationGroup extends SpecElementWithAttributes {
     type: RelationGroupType;
     specRelations: SpecRelation[];
 }
@@ -143,91 +146,91 @@ class RelationGroup extends SpecElementWithAttributes {
 //------------------------------------------------------------------------------
 //Fields of AttributeDefinition
 
-class AttributeDefinitionXHTML extends AttributeDefinition {
+export interface AttributeDefinitionXHTML extends AttributeDefinition {
     definition: AttributeValueXHTML;
     owningDefinition: AttributeValueXHTML;
 }
 
-class AttributeDefinitionEnumeration extends AttributeDefinition {
+export interface AttributeDefinitionEnumeration extends AttributeDefinition {
     multiValued: boolean;
     
     definition: AttributeValueEnumeration;
     owningDefinition: AttributeValueEnumeration;
 }
 
-class AttributeDefinitionSimple extends AttributeDefinition {
+export interface AttributeDefinitionSimple extends AttributeDefinition {
     
 }
 
-class AttributeDefinitionBoolean extends AttributeDefinitionSimple {
+export interface AttributeDefinitionBoolean extends AttributeDefinitionSimple {
     definition: AttributeValueBoolean;
     owningDefinition: AttributeValueBoolean;
 }
 
-class AttributeDefinitionDate extends AttributeDefinitionSimple {
+export interface AttributeDefinitionDate extends AttributeDefinitionSimple {
     
 }
 
-class AttributeDefinitionInteger extends AttributeDefinitionSimple {
+export interface AttributeDefinitionInteger extends AttributeDefinitionSimple {
     
 }
 
-class AttributeDefinitionReal extends AttributeDefinitionSimple {
+export interface AttributeDefinitionReal extends AttributeDefinitionSimple {
     
 }
 
-class AttributeDefinitionString extends AttributeDefinitionSimple {
+export interface AttributeDefinitionString extends AttributeDefinitionSimple {
     
 }
 
 //------------------------------------------------------------------------------
-//Inheritad classes of AttributeValue
+//Inheritad export interfacees of AttributeValue
 
-class AttributeValueXHTML extends AttributeValue {
+export interface AttributeValueXHTML extends AttributeValue {
     isSimplified: boolean;
     defaultValue: AttributeDefinitionXHTML;
 
     attributeValue: XhtmlContent;
 }
 
-class AttributeValueEnumeration extends AttributeValue {
+export interface AttributeValueEnumeration extends AttributeValue {
     defaultValue: AttributeDefinitionEnumeration;
     values: EnumValue;
 }
 
-class AttributeValueSimple extends AttributeValue {
+export interface AttributeValueSimple extends AttributeValue {
     
 }
 
-class AttributeValueBoolean extends AttributeValueSimple {
+export interface AttributeValueBoolean extends AttributeValueSimple {
     theValue: boolean;
     defaultValue: AttributeDefinitionBoolean;
 }
 
-class AttributeValueDate extends AttributeValueSimple {
+export interface AttributeValueDate extends AttributeValueSimple {
     theValue: Date;
     defaultValue: AttributeDefinitionDate;
 }
 
-class AttributeValueInteger extends AttributeValueSimple {
+export interface AttributeValueInteger extends AttributeValueSimple {
     theValue: BigInteger;
     defaultValue: AttributeDefinitionInteger;
 }
 
-class AttributeValueReal extends AttributeValueSimple {
+export interface AttributeValueReal extends AttributeValueSimple {
     theValue: number;
     defaultValue: AttributeDefinitionReal;
 }
 
-class AttributeValueString extends AttributeValueSimple {
+export interface AttributeValueString extends AttributeValueSimple {
     theValue: string;
     defaultValue: AttributeDefinitionString;
 }
 
 //------------------------------------------------------------------------------
-//Inheritad classes of 
+//Inheritad export interfacees of 
 
-class SpecHierarchy extends SpecElementWithAttributes {
+export interface SpecHierarchy extends SpecElementWithAttributes {
     isTableInternal: boolean;
     object: SpecObject;
     parent: SpecHierarchy;
@@ -238,36 +241,36 @@ class SpecHierarchy extends SpecElementWithAttributes {
 //------------------------------------------------------------------------------
 //DatatypeDefinition
 
-class DatatypeDefinition {
+export interface DatatypeDefinition {
     type: AttributeDefinition;
 }
 
-class DatatypeDefinitionSimple extends DatatypeDefinition {
+export interface DatatypeDefinitionSimple extends DatatypeDefinition {
     type: AttributeDefinitionSimple;
 }
 
-class DatatypeDefinitionEnumeration extends DatatypeDefinition {
+export interface DatatypeDefinitionEnumeration extends DatatypeDefinition {
     type: AttributeDefinitionEnumeration;
 
 }
 
-class DatatypeDefinitionXHTML extends DatatypeDefinition {
+export interface DatatypeDefinitionXHTML extends DatatypeDefinition {
     type: AttributeDefinitionXHTML;
 }
 
 //------------------
 
-class DatatypeDefinitionBoolean extends DatatypeDefinitionSimple {
+export interface DatatypeDefinitionBoolean extends DatatypeDefinitionSimple {
     type: AttributeDefinitionBoolean;
 }
 
-class DatatypeDefinitionInteger extends DatatypeDefinitionSimple {
+export interface DatatypeDefinitionInteger extends DatatypeDefinitionSimple {
     type: AttributeDefinitionInteger;
     max: BigInt;
     min: BigInt;
 }
 
-class DatatypeDefinitionReal extends DatatypeDefinitionSimple {
+export interface DatatypeDefinitionReal extends DatatypeDefinitionSimple {
     type: AttributeDefinitionReal;
 
     accuracy: BigInt;
@@ -275,30 +278,30 @@ class DatatypeDefinitionReal extends DatatypeDefinitionSimple {
     min: number;
 }
 
-class DatatypeDefinitionString extends DatatypeDefinitionSimple {
+export interface DatatypeDefinitionString extends DatatypeDefinitionSimple {
     type: AttributeDefinitionString;
 
     maxLength: BigInt;
 }
 
-class DatatypeDefinitionDate extends DatatypeDefinitionSimple {
+export interface DatatypeDefinitionDate extends DatatypeDefinitionSimple {
     type: AttributeDefinitionDate;
 }
 
 //--------------
 
-class EnumValue {
+export interface EnumValue {
     values: AttributeValueEnumeration;
     specifiedValues: DatatypeDefinitionEnumeration[];//ordered
     enumValue: EmbeddedValue
 }
 
-class EmbeddedValue {
+export interface EmbeddedValue {
     key: BigInt;
     otherContent: string;
 }
 
-class XhtmlContent {
+export interface XhtmlContent {
     theValue: string;
     theOriginalValue: string;
 }
