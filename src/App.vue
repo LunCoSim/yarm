@@ -59,7 +59,7 @@
                 outlined
                 tile
             >
-              One of three columns
+              <Editor />
             </v-card>
           </v-col>
         </v-row>
@@ -70,7 +70,9 @@
 </template>
 
 <script>
+import Editor from "@/components/Editor";
 export default {
+  components: {Editor},
   data: () => {
     return ({
       drawer: false,
