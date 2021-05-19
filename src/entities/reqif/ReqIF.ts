@@ -1,3 +1,5 @@
+import {ReqIFToolExtension} from "./ReqIFToolExtension";
+
 export interface ReqIF {
     lang: string; //[0..1]
     theHeader: ReqIFHeader;
@@ -29,9 +31,7 @@ export interface ReqIFContent {
     specRelationsGroup: RelationGroup[];
 }
 
-export interface ReqIFToolExtension {
 
-}
 
 //------------------------------------------------------------------------------
 //Identifiable
