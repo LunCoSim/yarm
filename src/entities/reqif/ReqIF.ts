@@ -12,14 +12,6 @@ export interface ReqIF {
     toolExtension: ReqIFToolExtension; 
 }
 
-
-//------------------------------------------------------------------------------
-//Fields of RewIF
-
-
-
-
-
 //------------------------------------------------------------------------------
 //Identifiable
 
@@ -146,7 +138,8 @@ export interface AttributeDefinitionEnumeration extends AttributeDefinition {
 }
 
 export interface AttributeDefinitionSimple extends AttributeDefinition {
-    
+    definition: AttributeValue;
+    owningDefinition: AttributeValue;
 }
 
 export interface AttributeDefinitionBoolean extends AttributeDefinitionSimple {
@@ -155,19 +148,23 @@ export interface AttributeDefinitionBoolean extends AttributeDefinitionSimple {
 }
 
 export interface AttributeDefinitionDate extends AttributeDefinitionSimple {
-    
+    definition: AttributeValueDate;
+    owningDefinition: AttributeValueDate;
 }
 
 export interface AttributeDefinitionInteger extends AttributeDefinitionSimple {
-    
+    definition: AttributeValueInteger;
+    owningDefinition: AttributeValueInteger;
 }
 
 export interface AttributeDefinitionReal extends AttributeDefinitionSimple {
-    
+    definition: AttributeValueReal;
+    owningDefinition: AttributeValueReal;
 }
 
 export interface AttributeDefinitionString extends AttributeDefinitionSimple {
-    
+    definition: AttributeValueString;
+    owningDefinition: AttributeValueString;
 }
 
 //------------------------------------------------------------------------------
