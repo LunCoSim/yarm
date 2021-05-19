@@ -1,4 +1,9 @@
 import {ReqIFToolExtension} from "./ReqIFToolExtension";
+import {ReqIFHeader} from "./ReqIFHeader"
+
+// import {} from "./content/"
+import {ReqIFContent} from "./content/ReqIFContent"
+
 
 export interface ReqIF {
     lang: string; //[0..1]
@@ -11,25 +16,7 @@ export interface ReqIF {
 //------------------------------------------------------------------------------
 //Fields of RewIF
 
-export interface ReqIFHeader {
-    comment: string; //[0..1]
-    creationTime: Date;
-    identifier: string;
-    repositoryId: string; //[0..1]
-    reqIFToolId: string;
-    reqIFVersion: string; //default = 1
-    sourceToolId: string;
-    title: string
-}
 
-export interface ReqIFContent {
-    datatypes: DatatypeDefinition[];
-    specTypes: SpecType[];
-    specObjects: SpecObject[];
-    specRelations: SpecRelation[];
-    specifications: Specification[];
-    specRelationsGroup: RelationGroup[];
-}
 
 
 
