@@ -20,9 +20,9 @@
               cols="12"
               sm="3"
           >
-              <v-file-input
-                  truncate-length="15"
-              ></v-file-input>
+            <v-file-input
+                truncate-length="15"
+            ></v-file-input>
           </v-col>
           <v-col
               cols="12"
@@ -46,6 +46,7 @@
               <v-treeview
                   activatable
                   :items="this.$store.state.treeData"
+                  @update:active="selectNode"
               ></v-treeview>
             </v-card>
           </v-col>
@@ -59,7 +60,7 @@
                 outlined
                 tile
             >
-              <Editor />
+              <Editor :activeNode="activeNode"/>
             </v-card>
           </v-col>
         </v-row>
@@ -71,16 +72,24 @@
 
 <script>
 import Editor from "@/components/Editor";
+import {findTreeNodeById} from "@/utils/findTreeNodeById";
+
 export default {
   components: {Editor},
   data: () => {
     return ({
       drawer: false,
+      activeNode: null,
     })
   },
   mounted() {
-    console.log(this.$store.state.treeData);
+    this.activeNode = this.$store.state.treeData[0];
+  },
+  methods: {
+    selectNode(id) {
+      this.activeNode = findTreeNodeById(id, {children: this.$store.state.treeData})
+    }
   }
-
 }
+
 </script>

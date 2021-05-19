@@ -9,26 +9,35 @@ export default new Vuex.Store({
       {
         id: 1,
         name: 'Applications :',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad, cupiditate dolores ducimus ea earum, error, exercitationem molestias nostrum obcaecati optio perferendis perspiciatis porro qui quidem quod repellat sequi voluptas.',
         children: [
-          { id: 2, name: 'Calendar : app' },
-          { id: 3, name: 'Chrome : app' },
-          { id: 4, name: 'Webstorm : app' },
+          { id: 2, name: 'Calendar : app',         desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad, cupiditate dolores ducimus ea earum, error, exercitationem molestias nostrum obcaecati optio perferendis perspiciatis porro qui quidem quod repellat sequi voluptas.',
+          },
+          { id: 3, name: 'Chrome : app',         desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad, cupiditate dolores ducimus ea earum, error, exercitationem molestias nostrum obcaecati optio perferendis perspiciatis porro qui quidem quod repellat sequi voluptas.',
+          },
+          { id: 4, name: 'Webstorm : app',         desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad, cupiditate dolores ducimus ea earum, error, exercitationem molestias nostrum obcaecati optio perferendis perspiciatis porro qui quidem quod repellat sequi voluptas.',
+          },
         ],
       },
       {
         id: 5,
         name: 'Documents :',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad, cupiditate dolores ducimus ea earum, error, exercitationem molestias nostrum obcaecati optio perferendis perspiciatis porro qui quidem quod repellat sequi voluptas.',
         children: [
           {
             id: 6,
             name: 'vuetify :',
+            desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad, cupiditate dolores ducimus ea earum, error, exercitationem molestias nostrum obcaecati optio perferendis perspiciatis porro qui quidem quod repellat sequi voluptas.',
             children: [
               {
                 id: 7,
                 name: 'src :',
+                desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad, cupiditate dolores ducimus ea earum, error, exercitationem molestias nostrum obcaecati optio perferendis perspiciatis porro qui quidem quod repellat sequi voluptas.',
                 children: [
-                  { id: 8, name: 'index : ts' },
-                  { id: 9, name: 'bootstrap : ts' },
+                  { id: 8, name: 'index : ts',         desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad, cupiditate dolores ducimus ea earum, error, exercitationem molestias nostrum obcaecati optio perferendis perspiciatis porro qui quidem quod repellat sequi voluptas.',
+                  },
+                  { id: 9, name: 'bootstrap : ts',         desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad, cupiditate dolores ducimus ea earum, error, exercitationem molestias nostrum obcaecati optio perferendis perspiciatis porro qui quidem quod repellat sequi voluptas.',
+                  },
                 ],
               },
             ],
@@ -36,6 +45,7 @@ export default new Vuex.Store({
           {
             id: 10,
             name: 'material2 :',
+            desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad, cupiditate dolores ducimus ea earum, error, exercitationem molestias nostrum obcaecati optio perferendis perspiciatis porro qui quidem quod repellat sequi voluptas.',
             children: [
               {
                 id: 11,
@@ -53,6 +63,7 @@ export default new Vuex.Store({
       {
         id: 15,
         name: 'Downloads :',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad, cupiditate dolores ducimus ea earum, error, exercitationem molestias nostrum obcaecati optio perferendis perspiciatis porro qui quidem quod repellat sequi voluptas.',
         children: [
           { id: 16, name: 'October : pdf' },
           { id: 17, name: 'November : pdf' },
@@ -62,6 +73,7 @@ export default new Vuex.Store({
       {
         id: 19,
         name: 'Videos :',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad, cupiditate dolores ducimus ea earum, error, exercitationem molestias nostrum obcaecati optio perferendis perspiciatis porro qui quidem quod repellat sequi voluptas.',
         children: [
           {
             id: 20,
@@ -79,6 +91,9 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
+    selectNode(state, node) {
+      console.log(node);
+    }
   },
   actions: {
   },
