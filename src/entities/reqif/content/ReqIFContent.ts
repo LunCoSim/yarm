@@ -1,3 +1,8 @@
+import {DatatypeDefinition} from "./ReqIFDatatypeDefinition"
+import {} from "./"
+
+import {} from "./"
+
 export interface ReqIFContent {
     datatypes: DatatypeDefinition[];
     specTypes: SpecType[];
