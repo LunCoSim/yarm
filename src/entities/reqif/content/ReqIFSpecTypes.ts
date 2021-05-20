@@ -1,4 +1,9 @@
-import {Identifiable} from "../ReqIF"
+import {Identifiable} from "../ReqIFIdentifiable"
+import { AttributeDefinition, AttributeValue } from "./ReqIFAttributeDefinition";
+import { RelationGroup } from "./ReqIFRelationGroup";
+import { Specification } from "./ReqIFSpecification";
+import { SpecObject } from "./ReqIFSpecObject";
+import { SpecRelation } from "./ReqIFSpecRelation";
 
 //------------------------------------------------------------------------------
 //SpecElementWithAttributes
@@ -6,9 +11,6 @@ import {Identifiable} from "../ReqIF"
 export interface SpecElementWithAttributes extends Identifiable {
     values: AttributeValue[]
 }
-
-
-
 
 export interface SpecType extends Identifiable {
     specAttributes: AttributeDefinition[];

@@ -1,3 +1,8 @@
+import { AccessControlledElement } from "../ReqIFAccessControlledElement"
+import { DatatypeDefinitionEnumeration } from "./ReqIFDatatypeDefinition";
+import { SpecElementWithAttributes, SpecHierarchy, SpecType } from "./ReqIFSpecTypes";
+
+
 //AttributeValue
 
 //should be abstract class
@@ -64,8 +69,9 @@ export interface AttributeDefinitionString extends AttributeDefinitionSimple {
 //------------------------------------------------------------------------------
 //Inheritad export interfacees of AttributeValue
 
+//todo: remove dummy data
 export interface AttributeValueSimple extends AttributeValue {
-    
+    dummy: string
 }
 
 export interface AttributeValueXHTML extends AttributeValue {
@@ -79,8 +85,6 @@ export interface AttributeValueEnumeration extends AttributeValue {
     defaultValue: AttributeDefinitionEnumeration;
     values: EnumValue;
 }
-
-
 
 export interface AttributeValueBoolean extends AttributeValueSimple {
     theValue: boolean;

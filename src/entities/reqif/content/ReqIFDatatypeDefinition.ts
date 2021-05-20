@@ -1,3 +1,5 @@
+import { AttributeDefinition, AttributeDefinitionBoolean, AttributeDefinitionDate, AttributeDefinitionEnumeration, AttributeDefinitionInteger, AttributeDefinitionReal, AttributeDefinitionSimple, AttributeDefinitionString, AttributeDefinitionXHTML } from "./ReqIFAttributeDefinition";
+
 //------------------------------------------------------------------------------
 //DatatypeDefinition
 
