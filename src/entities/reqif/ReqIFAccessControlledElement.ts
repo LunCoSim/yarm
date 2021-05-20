@@ -1,3 +1,5 @@
+import {Identifiable} from "./ReqIFIdentifiable"
+
 //----------------------
 //Access restriction
 
