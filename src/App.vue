@@ -4,7 +4,19 @@
         v-model="drawer"
         app
     >
-      <!--  -->
+      <v-container class="grey lighten-5">
+        <v-file-input
+            truncate-length="15"
+            @change="loadFile"
+        ></v-file-input>
+      </v-container>
+
+      <v-treeview
+          activatable
+          :items="this.$store.state.treeData"
+          @update:active="selectNode"
+      ></v-treeview>
+
     </v-navigation-drawer>
 
     <v-app-bar app>
@@ -17,44 +29,8 @@
       <v-container class="grey lighten-5">
         <v-row no-gutters>
           <v-col
-              cols="12"
-              sm="3"
-          >
-            <v-file-input
-                truncate-length="15"
-                @change="loadFile"
-            ></v-file-input>
-          </v-col>
-          <v-col
-              cols="12"
-              sm="6"
-          >
-          </v-col>
-        </v-row>
-      </v-container>
-      <v-container class="grey lighten-5">
-        <v-row no-gutters>
-          <v-col
-              key="1"
-              cols="12"
-              sm="4"
-          >
-            <v-card
-                class="pa-2"
-                outlined
-                tile
-            >
-              <v-treeview
-                  activatable
-                  :items="this.$store.state.treeData"
-                  @update:active="selectNode"
-              ></v-treeview>
-            </v-card>
-          </v-col>
-          <v-col
               key="2"
               cols="12"
-              sm="8"
           >
             <v-card
                 class="pa-2"
@@ -79,7 +55,7 @@ export default {
   components: {Editor},
   data: () => {
     return ({
-      drawer: false,
+      drawer: true,
       activeNode: null,
     })
   },
