@@ -97,6 +97,12 @@ export default new Vuex.Store({
     },
     updateTree(state, nodes: TreeNode[]) {
       Vue.set(state, 'treeData', nodes);
+      localStorage.setItem('items', JSON.stringify(nodes));
+    },
+    restoreTree(state) {
+      if (localStorage.getItem('items')) {
+        Vue.set(state, 'treeData', JSON.parse(localStorage.getItem('items') as string));
+      }
     }
   },
   actions: {

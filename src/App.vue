@@ -84,6 +84,7 @@ export default {
     })
   },
   mounted() {
+    this.$store.commit('restoreTree')
     this.activeNode = this.$store.state.treeData[0];
   },
   methods: {
