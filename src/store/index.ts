@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {TreeNode} from "@/entities/TreeNode";
 
 Vue.use(Vuex)
 
@@ -93,6 +94,9 @@ export default new Vuex.Store({
   mutations: {
     selectNode(state, node) {
       console.log(node);
+    },
+    updateTree(state, nodes: TreeNode[]) {
+      Vue.set(state, 'treeData', nodes);
     }
   },
   actions: {

@@ -22,6 +22,7 @@
           >
             <v-file-input
                 truncate-length="15"
+                @change="loadFile"
             ></v-file-input>
           </v-col>
           <v-col
@@ -88,6 +89,15 @@ export default {
   methods: {
     selectNode(id) {
       this.activeNode = findTreeNodeById(id, {children: this.$store.state.treeData})
+    },
+    loadFile(files) {
+      var reader = new FileReader();
+      const commit = this.$store.commit;
+      reader.onload = function(){
+        var text = reader.result;
+        commit('updateTree', JSON.parse(text))
+      };
+      reader.readAsText(files);
     }
   }
 }
