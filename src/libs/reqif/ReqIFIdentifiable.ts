@@ -8,12 +8,25 @@ export class Identifiable {
     lastChange: Date;
     longName: string; //[0..1];
 
-    alternativeID: AlternativeID;
+    alternativeID?: AlternativeID;
+
+    constructor() {
+        this.desc = "";
+        this.identifier = "";
+        this.lastChange = new Date();
+        this.longName = "";
+        this.alternativeID = undefined;
+    }
 }
 
 export class AlternativeID {
     identifier: string;
     ident: Identifiable;
+
+    constructor() {
+        this.identifier = "";
+        this.ident = new Identifiable();
+    }
 }
 
 

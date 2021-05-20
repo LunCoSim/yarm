@@ -1,4 +1,4 @@
-import {Identifiable} from "./ReqIFIdentifiable"
+import { Identifiable } from "./ReqIFIdentifiable"
 
 export class ReqIFHeader extends Identifiable {
     comment: string; //[0..1]
@@ -9,4 +9,17 @@ export class ReqIFHeader extends Identifiable {
     reqIFVersion: string; //default = 1
     sourceToolId: string;
     title: string
+
+    constructor() {
+        super();
+
+        this.comment = "";
+        this.creationTime = new Date();
+        this.identifier = "";
+        this.repositoryId = "";
+        this.reqIFToolId = "";
+        this.reqIFVersion = "";
+        this.sourceToolId = "";
+        this.title = "";
+    }
 }

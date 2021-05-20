@@ -12,4 +12,13 @@ export class ReqIFContent {
     specRelations: SpecRelation[];
     specifications: Specification[];
     specRelationsGroup: RelationGroup[];
+
+    constructor() {
+        this.datatypes = [];
+        this.specTypes = [];
+        this.specObjects = [];
+        this.specRelations = [];
+        this.specifications = [];
+        this.specRelationsGroup = [];
+    }
 }

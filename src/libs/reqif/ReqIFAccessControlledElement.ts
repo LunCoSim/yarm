@@ -6,4 +6,10 @@ import {Identifiable} from "./ReqIFIdentifiable"
 //should be abstract class
 export class AccessControlledElement extends Identifiable {
     isEditable: boolean;
+
+    constructor() {
+        super();
+
+        this.isEditable = true;
+    }
 }

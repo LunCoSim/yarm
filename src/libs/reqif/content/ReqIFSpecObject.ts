@@ -8,4 +8,14 @@ export class SpecObject extends SpecElementWithAttributes {
     object: SpecHierarchy;
     source: SpecRelation; //Global shared object, maybe in external source e.g. wikipedia 
     target: SpecRelation; //Global shared object, maybe in external source e.g. wikipedia 
+
+    constructor() {
+        super();
+        
+        this.type = new SpecObjectType();
+        this.object = new SpecHierarchy();
+        this.source = new SpecRelation(); //Global shared object, maybe in external source e.g. wikipedia 
+        this.target = new SpecRelation(); //Global shared object, maybe in external source e.g. wikipedia 
+
+    }
 }
