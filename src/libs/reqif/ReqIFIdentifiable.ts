@@ -2,7 +2,7 @@
 //Identifiable
 
 //TODO How to connect Identifiable and AlternativeID???? check page 29 figure 10.2 from ReqIF spec
-export interface Identifiable {
+export class Identifiable {
     desc: string; //[0..1]
     identifier: string; //UUID
     lastChange: Date;
@@ -11,7 +11,7 @@ export interface Identifiable {
     alternativeID: AlternativeID;
 }
 
-export interface AlternativeID {
+export class AlternativeID {
     identifier: string;
     ident: Identifiable;
 }

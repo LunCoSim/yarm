@@ -1,6 +1,6 @@
 import {Identifiable} from "./ReqIFIdentifiable"
 
-export interface ReqIFHeader extends Identifiable {
+export class ReqIFHeader extends Identifiable {
     comment: string; //[0..1]
     creationTime: Date;
     identifier: string;

@@ -8,31 +8,31 @@ import { SpecRelation } from "./ReqIFSpecRelation";
 //------------------------------------------------------------------------------
 //SpecElementWithAttributes
 
-export interface SpecElementWithAttributes extends Identifiable {
+export class SpecElementWithAttributes extends Identifiable {
     values: AttributeValue[]
 }
 
-export interface SpecType extends Identifiable {
+export class SpecType extends Identifiable {
     specAttributes: AttributeDefinition[];
 }
 
-export interface SpecificationType extends SpecType {
+export class SpecificationType extends SpecType {
     specification: Specification[];
 }
 
-export interface SpecObjectType extends SpecType {
+export class SpecObjectType extends SpecType {
     specObject: SpecObject[];
 }
 
-export interface SpecRelationType extends SpecType {
+export class SpecRelationType extends SpecType {
     specRelation: SpecRelation[];
 }
 
-export interface RelationGroupType extends SpecType {
+export class RelationGroupType extends SpecType {
     relationGroup: RelationGroup[];
 }
 
-export interface SpecHierarchy extends SpecElementWithAttributes {
+export class SpecHierarchy extends SpecElementWithAttributes {
     isTableInternal: boolean;
     object: SpecObject;
     parent: SpecHierarchy;

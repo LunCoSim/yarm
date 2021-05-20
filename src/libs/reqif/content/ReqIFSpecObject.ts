@@ -3,7 +3,7 @@ import { SpecElementWithAttributes, SpecHierarchy, SpecObjectType } from "./ReqI
 
 //------------------------------------------------------------------------------
 
-export interface SpecObject extends SpecElementWithAttributes {
+export class SpecObject extends SpecElementWithAttributes {
     type: SpecObjectType;
     object: SpecHierarchy;
     source: SpecRelation; //Global shared object, maybe in external source e.g. wikipedia 

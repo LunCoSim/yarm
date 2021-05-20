@@ -1,5 +1,5 @@
 //TODO: write correct implementation
 
-export interface ReqIFToolExtension {
+export class ReqIFToolExtension {
     dummydata: string; //temporary data to prevent linter error. To be removed
 }

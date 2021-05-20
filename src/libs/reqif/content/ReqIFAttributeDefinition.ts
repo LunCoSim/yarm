@@ -6,13 +6,13 @@ import { SpecElementWithAttributes, SpecHierarchy, SpecType } from "./ReqIFSpecT
 //AttributeValue
 
 //should be abstract class
-export interface AttributeValue {
+export class AttributeValue {
     specElAt: SpecElementWithAttributes[];
     defaultValue: AttributeDefinition;
 }
 
 //should be abstract class
-export interface AttributeDefinition extends AccessControlledElement{
+export class AttributeDefinition extends AccessControlledElement{
     specType: SpecType;
 
     definition: AttributeValue;
@@ -24,110 +24,110 @@ export interface AttributeDefinition extends AccessControlledElement{
 //------------------------------------------------------------------------------
 //Fields of AttributeDefinition
 
-export interface AttributeDefinitionXHTML extends AttributeDefinition {
+export class AttributeDefinitionXHTML extends AttributeDefinition {
     definition: AttributeValueXHTML;
     owningDefinition: AttributeValueXHTML;
 }
 
-export interface AttributeDefinitionEnumeration extends AttributeDefinition {
+export class AttributeDefinitionEnumeration extends AttributeDefinition {
     multiValued: boolean;
     
     definition: AttributeValueEnumeration;
     owningDefinition: AttributeValueEnumeration;
 }
 
-export interface AttributeDefinitionSimple extends AttributeDefinition {
+export class AttributeDefinitionSimple extends AttributeDefinition {
     definition: AttributeValue;
     owningDefinition: AttributeValue;
 }
 
-export interface AttributeDefinitionBoolean extends AttributeDefinitionSimple {
+export class AttributeDefinitionBoolean extends AttributeDefinitionSimple {
     definition: AttributeValueBoolean;
     owningDefinition: AttributeValueBoolean;
 }
 
-export interface AttributeDefinitionDate extends AttributeDefinitionSimple {
+export class AttributeDefinitionDate extends AttributeDefinitionSimple {
     definition: AttributeValueDate;
     owningDefinition: AttributeValueDate;
 }
 
-export interface AttributeDefinitionInteger extends AttributeDefinitionSimple {
+export class AttributeDefinitionInteger extends AttributeDefinitionSimple {
     definition: AttributeValueInteger;
     owningDefinition: AttributeValueInteger;
 }
 
-export interface AttributeDefinitionReal extends AttributeDefinitionSimple {
+export class AttributeDefinitionReal extends AttributeDefinitionSimple {
     definition: AttributeValueReal;
     owningDefinition: AttributeValueReal;
 }
 
-export interface AttributeDefinitionString extends AttributeDefinitionSimple {
+export class AttributeDefinitionString extends AttributeDefinitionSimple {
     definition: AttributeValueString;
     owningDefinition: AttributeValueString;
 }
 
 //------------------------------------------------------------------------------
-//Inheritad export interfacees of AttributeValue
+//Inheritad export classes of AttributeValue
 
 //todo: remove dummy data
-export interface AttributeValueSimple extends AttributeValue {
+export class AttributeValueSimple extends AttributeValue {
     dummy: string
 }
 
-export interface AttributeValueXHTML extends AttributeValue {
+export class AttributeValueXHTML extends AttributeValue {
     isSimplified: boolean;
     defaultValue: AttributeDefinitionXHTML;
 
     attributeValue: XhtmlContent;
 }
 
-export interface AttributeValueEnumeration extends AttributeValue {
+export class AttributeValueEnumeration extends AttributeValue {
     defaultValue: AttributeDefinitionEnumeration;
     values: EnumValue;
 }
 
-export interface AttributeValueBoolean extends AttributeValueSimple {
+export class AttributeValueBoolean extends AttributeValueSimple {
     theValue: boolean;
     defaultValue: AttributeDefinitionBoolean;
 }
 
-export interface AttributeValueDate extends AttributeValueSimple {
+export class AttributeValueDate extends AttributeValueSimple {
     theValue: Date;
     defaultValue: AttributeDefinitionDate;
 }
 
-export interface AttributeValueInteger extends AttributeValueSimple {
+export class AttributeValueInteger extends AttributeValueSimple {
     theValue: BigInteger;
     defaultValue: AttributeDefinitionInteger;
 }
 
-export interface AttributeValueReal extends AttributeValueSimple {
+export class AttributeValueReal extends AttributeValueSimple {
     theValue: number;
     defaultValue: AttributeDefinitionReal;
 }
 
-export interface AttributeValueString extends AttributeValueSimple {
+export class AttributeValueString extends AttributeValueSimple {
     theValue: string;
     defaultValue: AttributeDefinitionString;
 }
 
 //------------------------------------------------------------------------------
-//Inheritad export interfacees of 
+//Inheritad export classes of 
 
 //--------------
 
-export interface EnumValue {
+export class EnumValue {
     values: AttributeValueEnumeration;
     specifiedValues: DatatypeDefinitionEnumeration[];//ordered
     enumValue: EmbeddedValue
 }
 
-export interface EmbeddedValue {
+export class EmbeddedValue {
     key: BigInt;
     otherContent: string;
 }
 
-export interface XhtmlContent {
+export class XhtmlContent {
     theValue: string;
     theOriginalValue: string;
 }

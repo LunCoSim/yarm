@@ -5,7 +5,7 @@ import {SpecRelation} from "./ReqIFSpecRelation"
 import {Specification} from "./ReqIFSpecification"
 import {RelationGroup} from "./ReqIFRelationGroup"
 
-export interface ReqIFContent {
+export class ReqIFContent {
     datatypes: DatatypeDefinition[];
     specTypes: SpecType[];
     specObjects: SpecObject[];
