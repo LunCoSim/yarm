@@ -8,12 +8,16 @@ import { SpecElementWithAttributes, SpecHierarchy, SpecType } from "./ReqIFSpecT
 //should be abstract class
 export class AttributeValue {
     specElAt: SpecElementWithAttributes[];
-    defaultValue: AttributeDefinition;
+    defaultValue?: AttributeDefinition;
+
+    constructor() {
+        specElAt = [];
+    }
 }
 
 //should be abstract class
 export class AttributeDefinition extends AccessControlledElement{
-    specType: SpecType;
+    specType = SpecType;
 
     definition: AttributeValue;
     owningDefinition: AttributeValue;
@@ -76,39 +80,39 @@ export class AttributeValueSimple extends AttributeValue {
 
 export class AttributeValueXHTML extends AttributeValue {
     isSimplified: boolean;
-    defaultValue: AttributeDefinitionXHTML;
+    defaultValue?: AttributeDefinitionXHTML;
 
     attributeValue: XhtmlContent;
 }
 
 export class AttributeValueEnumeration extends AttributeValue {
-    defaultValue: AttributeDefinitionEnumeration;
+    defaultValue?: AttributeDefinitionEnumeration;
     values: EnumValue;
 }
 
 export class AttributeValueBoolean extends AttributeValueSimple {
     theValue: boolean;
-    defaultValue: AttributeDefinitionBoolean;
+    defaultValue?: AttributeDefinitionBoolean;
 }
 
 export class AttributeValueDate extends AttributeValueSimple {
     theValue: Date;
-    defaultValue: AttributeDefinitionDate;
+    defaultValue?: AttributeDefinitionDate;
 }
 
 export class AttributeValueInteger extends AttributeValueSimple {
     theValue: BigInteger;
-    defaultValue: AttributeDefinitionInteger;
+    defaultValue?: AttributeDefinitionInteger;
 }
 
 export class AttributeValueReal extends AttributeValueSimple {
     theValue: number;
-    defaultValue: AttributeDefinitionReal;
+    defaultValue?: AttributeDefinitionReal;
 }
 
 export class AttributeValueString extends AttributeValueSimple {
     theValue: string;
-    defaultValue: AttributeDefinitionString;
+    defaultValue?: AttributeDefinitionString;
 }
 
 //------------------------------------------------------------------------------
@@ -123,7 +127,7 @@ export class EnumValue {
 }
 
 export class EmbeddedValue {
-    key: BigInt;
+    key: number;
     otherContent: string;
 }
 
