@@ -2,7 +2,7 @@ import {ReqIFToolExtension} from "./ReqIFToolExtension";
 import {ReqIFHeader} from "./ReqIFHeader"
 
 // import {} from "./content/"
-import {ReqIFContent} from "./content/ReqIFContent"
+import {ReqIFContent} from "./ReqIFContent"
 
 
 export class ReqIF {
