@@ -1,9 +1,9 @@
-import {DatatypeDefinition} from "./ReqIFDatatypeDefinition"
-import {SpecType} from "./ReqIFSpecTypes"
-import {SpecObject} from "./ReqIFSpecObject"
-import {SpecRelation} from "./ReqIFSpecRelation"
-import {Specification} from "./ReqIFSpecification"
-import {RelationGroup} from "./ReqIFRelationGroup"
+import {DatatypeDefinition} from "./content/definitions/ReqIFDatatypeDefinition"
+import {SpecType} from "./content/ReqIFSpecTypes"
+import {SpecObject} from "./content/ReqIFSpecObject"
+import {SpecRelation} from "./content/ReqIFSpecRelation"
+import {Specification} from "./content/ReqIFSpecification"
+import {RelationGroup} from "./content/ReqIFRelationGroup"
 
 export class ReqIFContent {
     datatypes: DatatypeDefinition[];

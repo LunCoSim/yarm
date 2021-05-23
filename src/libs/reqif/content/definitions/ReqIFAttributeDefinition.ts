@@ -1,6 +1,6 @@
-import { AccessControlledElement } from "../ReqIFAccessControlledElement"
+import { AccessControlledElement } from "../../ReqIFAccessControlledElement"
 import { DatatypeDefinitionEnumeration } from "./ReqIFDatatypeDefinition";
-import { SpecElementWithAttributes, SpecHierarchy, SpecType } from "./ReqIFSpecTypes";
+import { SpecElementWithAttributes, SpecHierarchy, SpecType } from "../ReqIFSpecTypes";
 
 
 //AttributeValue
@@ -11,7 +11,7 @@ export class AttributeValue {
     defaultValue?: AttributeDefinition;
 
     constructor() {
-        specElAt = [];
+        this.specElAt = [];
     }
 }
 
