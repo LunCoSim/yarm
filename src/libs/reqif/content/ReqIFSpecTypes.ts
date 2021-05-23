@@ -1,5 +1,6 @@
-import {Identifiable} from "../ReqIFIdentifiable"
-import { AttributeDefinition, AttributeValue } from "./definitions/ReqIFAttributeDefinition";
+import { AttributeDefinition } from "../definitions/ReqIFAttributeDefinition";
+import { AttributeValue } from "../definitions/ReqIFAttributeValue";
+import { Identifiable } from "../ReqIFIdentifiable"
 import { RelationGroup } from "./ReqIFRelationGroup";
 import { Specification } from "./ReqIFSpecification";
 import { SpecObject } from "./ReqIFSpecObject";
