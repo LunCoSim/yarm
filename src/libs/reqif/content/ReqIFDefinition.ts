@@ -7,11 +7,20 @@ Basic abstract classes
 ------------------------------------------------------------------------------
 */
 
+export class DatatypeDefinition {
+    type = AttributeDefinition;
+
+    constructor() {
+        true;//to prevent compiler error
+    }
+}
+
+
 export class AttributeDefinition extends AccessControlledElement{
     specType = SpecType;
 
     definition: AttributeValue;
-    owningDefinition: AttributeValue; //set back to parent for default values!
+    owningDefinition?: AttributeValue; //set back to parent for default values!
 
     editableAttrs: SpecHierarchy;
 
@@ -25,13 +34,6 @@ export class AttributeDefinition extends AccessControlledElement{
     }
 }
 
-export class DatatypeDefinition {
-    type = AttributeDefinition;
-
-    constructor() {
-        
-    }
-}
 
 export class AttributeValue {
     specElAt: SpecElementWithAttributes[];
@@ -59,11 +61,17 @@ export class DatatypeDefinitionSimple extends DatatypeDefinition {
 
 export class AttributeDefinitionSimple extends AttributeDefinition {
     definition: AttributeValueSimple;
-    owningDefinition: AttributeValueSimple;
+    owningDefinition?: AttributeValueSimple;
+
+    constructor(definition?:AttributeValueSimple) {
+        super();
+        this.definition = definition || new AttributeValueSimple();
+    }
 }
 
 export class AttributeValueSimple extends AttributeValue {
-    dummy: string
+    dummy = "";
+
 }
 
 /*
@@ -86,7 +94,12 @@ export class DatatypeDefinitionXHTML extends DatatypeDefinition {
 
 export class AttributeDefinitionXHTML extends AttributeDefinition {
     definition: AttributeValueXHTML;
-    owningDefinition: AttributeValueXHTML;
+    owningDefinition?: AttributeValueXHTML;
+
+    constructor(definition?:) {
+        super();
+        this.definition = definition || new AttributeValueXHTML();
+    }
 }
 
 export class AttributeValueXHTML extends AttributeValue {
@@ -117,7 +130,12 @@ export class AttributeDefinitionEnumeration extends AttributeDefinition {
     multiValued = false;
     
     definition: AttributeValueEnumeration;
-    owningDefinition: AttributeValueEnumeration;
+    owningDefinition?: AttributeValueEnumeration;
+
+    constructor(definition?:AttributeValueEnumeration) {
+        super();
+        this.definition = definition || new AttributeValueEnumeration();
+    }
 }
 
 export class AttributeValueEnumeration extends AttributeValue {
@@ -133,7 +151,7 @@ export class EnumValue {
 
 export class EmbeddedValue {
     key: number;
-    otherContent: string;//should be link to other content
+    otherContent: any;//should be link to other content
     
     constructor() {
         this.key = 0;
@@ -155,7 +173,12 @@ export class DatatypeDefinitionBoolean extends DatatypeDefinitionSimple {
 
 export class AttributeDefinitionBoolean extends AttributeDefinitionSimple {
     definition: AttributeValueBoolean;
-    owningDefinition: AttributeValueBoolean;
+    owningDefinition?: AttributeValueBoolean;
+
+    constructor(definition?:AttributeValueBoolean) {
+        super();
+        this.definition = definition || new AttributeValueBoolean();
+    }
 }
 
 export class AttributeValueBoolean extends AttributeValueSimple {
@@ -177,7 +200,12 @@ export class DatatypeDefinitionDate extends DatatypeDefinitionSimple {
 
 export class AttributeDefinitionDate extends AttributeDefinitionSimple {
     definition: AttributeValueDate;
-    owningDefinition: AttributeValueDate;
+    owningDefinition?: AttributeValueDate;
+
+    constructor(definition?:AttributeValueDate) {
+        super();
+        this.definition = definition || new AttributeValueDate();
+    }
 }
 
 export class AttributeValueDate extends AttributeValueSimple {
@@ -208,7 +236,12 @@ export class DatatypeDefinitionInteger extends DatatypeDefinitionSimple {
 
 export class AttributeDefinitionInteger extends AttributeDefinitionSimple {
     definition: AttributeValueInteger;
-    owningDefinition: AttributeValueInteger;
+    owningDefinition?: AttributeValueInteger;
+
+    constructor(definition?:AttributeValueInteger) {
+        super();
+        this.definition = definition || new AttributeValueInteger();
+    }
 }
 
 export class AttributeValueInteger extends AttributeValueSimple {
@@ -225,12 +258,6 @@ export class AttributeValueInteger extends AttributeValueSimple {
 //---------
 //Real
 
-export class AttributeDefinitionReal extends AttributeDefinitionSimple {
-    definition: AttributeValueReal;
-    owningDefinition: AttributeValueReal;
-}
-
-
 export class DatatypeDefinitionReal extends DatatypeDefinitionSimple {
     type = AttributeDefinitionReal;
 
@@ -244,6 +271,16 @@ export class DatatypeDefinitionReal extends DatatypeDefinitionSimple {
         this.accuracy = 8;//should be int
         this.max = 0xFFFFFF;
         this.min = -0xFFFFF;
+    }
+}
+
+export class AttributeDefinitionReal extends AttributeDefinitionSimple {
+    definition: AttributeValueReal;
+    owningDefinition?: AttributeValueReal;
+
+    constructor(definition?:AttributeValueReal) {
+        super();
+        this.definition = definition || new AttributeValueReal();
     }
 }
 
@@ -274,7 +311,12 @@ export class DatatypeDefinitionString extends DatatypeDefinitionSimple {
 
 export class AttributeDefinitionString extends AttributeDefinitionSimple {
     definition: AttributeValueString;
-    owningDefinition: AttributeValueString;
+    owningDefinition?: AttributeValueString;
+
+    constructor(definition?:AttributeValueString) {
+        super();
+        this.definition = definition || new AttributeValueString();
+    }
 }
 
 export class AttributeValueString extends AttributeValueSimple {
