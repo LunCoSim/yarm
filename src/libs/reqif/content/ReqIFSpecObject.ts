@@ -1,5 +1,7 @@
+import { SpecElementWithAttributes } from "../ReqIFBasicClasses";
+import { SpecHierarchy } from "./ReqIFSpecification";
 import { SpecRelation } from "./ReqIFSpecRelation";
-import { SpecElementWithAttributes, SpecHierarchy, SpecObjectType } from "./ReqIFSpecTypes";
+import { SpecObjectType } from "./ReqIFSpecTypes";
 
 //------------------------------------------------------------------------------
 

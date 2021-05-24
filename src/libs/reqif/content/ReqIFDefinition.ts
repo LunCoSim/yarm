@@ -1,5 +1,6 @@
-import { SpecElementWithAttributes, SpecHierarchy, SpecType } from "./ReqIFSpecTypes";
-import { AccessControlledElement } from "../ReqIFAccessControlledElement";
+import { SpecType } from "./ReqIFSpecTypes";
+import { SpecHierarchy } from "./ReqIFSpecification";
+import { AccessControlledElement, SpecElementWithAttributes } from "../ReqIFBasicClasses";
 
 /*
 ------------------------------------------------------------------------------

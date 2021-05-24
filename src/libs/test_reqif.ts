@@ -8,3 +8,4 @@ import {ReqIF} from "./reqif/ReqIF"
 let r = new ReqIF();
 
 console.log("Hello");
+console.log(r);

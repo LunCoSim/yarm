@@ -1,22 +1,11 @@
-import { AttributeDefinition, AttributeValue } from "./ReqIFDefinition";
-import { Identifiable } from "../ReqIFIdentifiable"
+import { AttributeDefinition } from "./ReqIFDefinition";
+import { Identifiable } from "../ReqIFBasicClasses"
 import { RelationGroup } from "./ReqIFRelationGroup";
 import { Specification } from "./ReqIFSpecification";
 import { SpecObject } from "./ReqIFSpecObject";
 import { SpecRelation } from "./ReqIFSpecRelation";
 
 //------------------------------------------------------------------------------
-//SpecElementWithAttributes
-
-export class SpecElementWithAttributes extends Identifiable {
-    values: AttributeValue[]
-
-    constructor() {
-        super()
-
-        this.values = [];
-    }
-}
 
 export class SpecType extends Identifiable {
     specAttributes: AttributeDefinition[];
@@ -65,23 +54,5 @@ export class RelationGroupType extends SpecType {
         super();
 
         this.relationGroup = [];
-    }
-}
-
-export class SpecHierarchy extends SpecElementWithAttributes {
-    isTableInternal: boolean;
-    object: SpecObject;
-    parent: SpecHierarchy;
-    children: Specification[]; //ordered
-    specObjects: SpecObject[];
-
-    constructor() {
-        super()
-
-        this.isTableInternal = false;
-        this.object = new SpecObject();
-        this.parent = new SpecHierarchy();
-        this.children = []; //ordered
-        this.specObjects = [];
     }
 }

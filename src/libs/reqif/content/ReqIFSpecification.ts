@@ -1,5 +1,8 @@
+import { SpecElementWithAttributes } from "../ReqIFBasicClasses";
 import { RelationGroup } from "./ReqIFRelationGroup";
-import { SpecElementWithAttributes, SpecHierarchy, SpecificationType } from "./ReqIFSpecTypes";
+import { SpecObject } from "./ReqIFSpecObject";
+import { SpecificationType } from "./ReqIFSpecTypes";
+
 
 export class Specification extends SpecElementWithAttributes {
     type: SpecificationType;
@@ -14,5 +17,23 @@ export class Specification extends SpecElementWithAttributes {
         this.root = new SpecHierarchy();
         this.sourceSpecification = new RelationGroup();
         this.targetSpecificaiton = new RelationGroup();
+    }
+}
+
+export class SpecHierarchy extends SpecElementWithAttributes {
+    isTableInternal: boolean;
+    object: SpecObject;
+    parent: SpecHierarchy;
+    children: Specification[]; //ordered
+    specObjects: SpecObject[];
+
+    constructor() {
+        super()
+
+        this.isTableInternal = false;
+        this.object = new SpecObject();
+        this.parent = new SpecHierarchy();
+        this.children = []; //ordered
+        this.specObjects = [];
     }
 }

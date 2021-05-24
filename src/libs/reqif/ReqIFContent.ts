@@ -6,7 +6,7 @@ import { RelationGroup } from "./content/ReqIFRelationGroup"
 import { DatatypeDefinition } from "./content/ReqIFDefinition"
 
 export class ReqIFContent {
-    datatypes: DatatypeDefinition[];
+    dataTypes: DatatypeDefinition[];
     specTypes: SpecType[];
     specObjects: SpecObject[];
     specRelations: SpecRelation[];
@@ -14,7 +14,7 @@ export class ReqIFContent {
     specRelationsGroup: RelationGroup[];
 
     constructor() {
-        this.datatypes = [];
+        this.dataTypes = [];
         this.specTypes = [];
         this.specObjects = [];
         this.specRelations = [];

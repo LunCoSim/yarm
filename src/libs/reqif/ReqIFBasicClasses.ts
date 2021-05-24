@@ -1,6 +1,8 @@
 //------------------------------------------------------------------------------
 //Identifiable
 
+import { AttributeValue } from "./content/ReqIFDefinition";
+
 //TODO How to connect Identifiable and AlternativeID???? check page 29 figure 10.2 from ReqIF spec
 export class Identifiable {
     desc: string; //[0..1]
@@ -29,4 +31,29 @@ export class AlternativeID {
     }
 }
 
+//----------------------
+//Access restriction
 
+//should be abstract class
+export class AccessControlledElement extends Identifiable {
+    isEditable: boolean;
+
+    constructor() {
+        super();
+
+        this.isEditable = true;
+    }
+}
+
+//-------------------------------------------------------
+//SpecElementWithAttributes
+
+export class SpecElementWithAttributes extends Identifiable {
+    values: AttributeValue[]
+
+    constructor() {
+        super()
+
+        this.values = [];
+    }
+}

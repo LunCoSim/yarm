@@ -1,5 +1,6 @@
+import { SpecElementWithAttributes } from "../ReqIFBasicClasses";
 import { SpecRelation } from "./ReqIFSpecRelation";
-import { RelationGroupType, SpecElementWithAttributes } from "./ReqIFSpecTypes";
+import { RelationGroupType } from "./ReqIFSpecTypes";
 
 export class RelationGroup extends SpecElementWithAttributes {
     type: RelationGroupType;
