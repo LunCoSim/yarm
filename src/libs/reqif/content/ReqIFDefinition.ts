@@ -96,7 +96,7 @@ export class AttributeDefinitionXHTML extends AttributeDefinition {
     definition: AttributeValueXHTML;
     owningDefinition?: AttributeValueXHTML;
 
-    constructor(definition?:) {
+    constructor(definition?:AttributeValueXHTML) {
         super();
         this.definition = definition || new AttributeValueXHTML();
     }
