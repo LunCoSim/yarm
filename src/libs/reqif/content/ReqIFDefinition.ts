@@ -11,7 +11,7 @@ export class AttributeDefinition extends AccessControlledElement{
     specType = SpecType;
 
     definition: AttributeValue;
-    owningDefinition: AttributeValue;
+    owningDefinition: AttributeValue; //set back to parent for default values!
 
     editableAttrs: SpecHierarchy;
 
@@ -48,18 +48,18 @@ Simple class
 ------------------------------------------------------------------------------
 */
 
-export class AttributeDefinitionSimple extends AttributeDefinition {
-    definition: AttributeValueSimple;
-    owningDefinition: AttributeValueSimple;
-}
-
 export class DatatypeDefinitionSimple extends DatatypeDefinition {
-    type: AttributeDefinitionSimple;
+    type = AttributeDefinitionSimple;
 
     constructor() {
         super();
         
     }
+}
+
+export class AttributeDefinitionSimple extends AttributeDefinition {
+    definition: AttributeValueSimple;
+    owningDefinition: AttributeValueSimple;
 }
 
 export class AttributeValueSimple extends AttributeValue {
@@ -75,44 +75,37 @@ Types definition
 //-----------
 //XHTML
 
+export class DatatypeDefinitionXHTML extends DatatypeDefinition {
+    type = AttributeDefinitionXHTML;
+
+    constructor() {
+        super();
+        
+    }
+}
+
 export class AttributeDefinitionXHTML extends AttributeDefinition {
     definition: AttributeValueXHTML;
     owningDefinition: AttributeValueXHTML;
 }
 
-export class DatatypeDefinitionXHTML extends DatatypeDefinition {
-    type: AttributeDefinitionXHTML;
+export class AttributeValueXHTML extends AttributeValue {
+    isSimplified = false;
+    defaultValue?: AttributeDefinitionXHTML;
 
-    constructor() {
-        super();
-        
-    }
+    attributeValue?: XhtmlContent;
 }
 
 export class XhtmlContent {
-    theValue: string;
-    theOriginalValue: string;
-}
-
-export class AttributeValueXHTML extends AttributeValue {
-    isSimplified: boolean;
-    defaultValue?: AttributeDefinitionXHTML;
-
-    attributeValue: XhtmlContent;
+    theValue = "";
+    theOriginalValue = "";
 }
 
 //-----------
 //Enumeration
 
-export class AttributeDefinitionEnumeration extends AttributeDefinition {
-    multiValued: boolean;
-    
-    definition: AttributeValueEnumeration;
-    owningDefinition: AttributeValueEnumeration;
-}
-
 export class DatatypeDefinitionEnumeration extends DatatypeDefinition {
-    type: AttributeDefinitionEnumeration;
+    type = AttributeDefinitionEnumeration;
 
     constructor() {
         super();
@@ -120,32 +113,36 @@ export class DatatypeDefinitionEnumeration extends DatatypeDefinition {
     }
 }
 
-export class AttributeValueEnumeration extends AttributeValue {
-    defaultValue?: AttributeDefinitionEnumeration;
-    values: EnumValue;
+export class AttributeDefinitionEnumeration extends AttributeDefinition {
+    multiValued = false;
+    
+    definition: AttributeValueEnumeration;
+    owningDefinition: AttributeValueEnumeration;
 }
 
+export class AttributeValueEnumeration extends AttributeValue {
+    defaultValue?: AttributeDefinitionEnumeration;
+    values: EnumValue[] = [];
+}
 
 export class EnumValue {
-    values: AttributeValueEnumeration;
-    specifiedValues: DatatypeDefinitionEnumeration[];//ordered
-    enumValue: EmbeddedValue
+    values?: AttributeValueEnumeration;
+    specifiedValues?: DatatypeDefinitionEnumeration[];//ordered
+    enumValue?: EmbeddedValue
 }
 
 export class EmbeddedValue {
     key: number;
     otherContent: string;//should be link to other content
     
+    constructor() {
+        this.key = 0;
+        this.otherContent = "";
+    }
 }
-
 
 //----------
 //Boolean
-
-export class AttributeDefinitionBoolean extends AttributeDefinitionSimple {
-    definition: AttributeValueBoolean;
-    owningDefinition: AttributeValueBoolean;
-}
 
 export class DatatypeDefinitionBoolean extends DatatypeDefinitionSimple {
     type = AttributeDefinitionBoolean;
@@ -156,40 +153,48 @@ export class DatatypeDefinitionBoolean extends DatatypeDefinitionSimple {
     }
 }
 
+export class AttributeDefinitionBoolean extends AttributeDefinitionSimple {
+    definition: AttributeValueBoolean;
+    owningDefinition: AttributeValueBoolean;
+}
+
 export class AttributeValueBoolean extends AttributeValueSimple {
     theValue: boolean;
     defaultValue?: AttributeDefinitionBoolean;
+
+    constructor(theValue?:boolean) {
+        super();
+        this.theValue = theValue || false;
+    }
 }
 
 //---------
 //Date
+
+export class DatatypeDefinitionDate extends DatatypeDefinitionSimple {
+    type = AttributeDefinitionDate;
+}
+
 export class AttributeDefinitionDate extends AttributeDefinitionSimple {
     definition: AttributeValueDate;
     owningDefinition: AttributeValueDate;
 }
 
-export class DatatypeDefinitionDate extends DatatypeDefinitionSimple {
-    type: AttributeDefinitionDate;
-}
-
 export class AttributeValueDate extends AttributeValueSimple {
     theValue: Date;
     defaultValue?: AttributeDefinitionDate;
+
+    constructor(theValue?:Date) {
+        super();
+        this.theValue = theValue || new Date();
+    }
 }
-
-
-
 
 //---------
 //Integer
 
-export class AttributeDefinitionInteger extends AttributeDefinitionSimple {
-    definition: AttributeValueInteger;
-    owningDefinition: AttributeValueInteger;
-}
-
 export class DatatypeDefinitionInteger extends DatatypeDefinitionSimple {
-    type: AttributeDefinitionInteger;
+    type = AttributeDefinitionInteger;
     max: number; //should be int
     min: number; //should be int
 
@@ -201,9 +206,19 @@ export class DatatypeDefinitionInteger extends DatatypeDefinitionSimple {
     }
 }
 
+export class AttributeDefinitionInteger extends AttributeDefinitionSimple {
+    definition: AttributeValueInteger;
+    owningDefinition: AttributeValueInteger;
+}
+
 export class AttributeValueInteger extends AttributeValueSimple {
-    theValue: BigInteger;
+    theValue: number;
     defaultValue?: AttributeDefinitionInteger;
+
+    constructor(theValue?:number) {
+        super();
+        this.theValue = theValue || 0;
+    }
 }
 
 
@@ -217,7 +232,7 @@ export class AttributeDefinitionReal extends AttributeDefinitionSimple {
 
 
 export class DatatypeDefinitionReal extends DatatypeDefinitionSimple {
-    type: AttributeDefinitionReal;
+    type = AttributeDefinitionReal;
 
     accuracy: number;//should be int
     max: number;
@@ -235,19 +250,18 @@ export class DatatypeDefinitionReal extends DatatypeDefinitionSimple {
 export class AttributeValueReal extends AttributeValueSimple {
     theValue: number;
     defaultValue?: AttributeDefinitionReal;
-}
 
+    constructor(theValue?:number) {
+        super();
+        this.theValue = theValue || 0;
+    }
+}
 
 //---------
 //String
 
-export class AttributeDefinitionString extends AttributeDefinitionSimple {
-    definition: AttributeValueString;
-    owningDefinition: AttributeValueString;
-}
-
 export class DatatypeDefinitionString extends DatatypeDefinitionSimple {
-    type: AttributeDefinitionString;
+    type = AttributeDefinitionString;
 
     maxLength: number; //should be int
 
@@ -258,8 +272,20 @@ export class DatatypeDefinitionString extends DatatypeDefinitionSimple {
     }
 }
 
+export class AttributeDefinitionString extends AttributeDefinitionSimple {
+    definition: AttributeValueString;
+    owningDefinition: AttributeValueString;
+}
+
 export class AttributeValueString extends AttributeValueSimple {
     theValue: string;
     defaultValue?: AttributeDefinitionString;
+
+    constructor(theValue?:string) {
+        super();
+        this.theValue = theValue || "";
+    }
 }
+
+
 
