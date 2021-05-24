@@ -3,7 +3,7 @@ import { SpecObject } from "./content/ReqIFSpecObject"
 import { SpecRelation } from "./content/ReqIFSpecRelation"
 import { Specification } from "./content/ReqIFSpecification"
 import { RelationGroup } from "./content/ReqIFRelationGroup"
-import { DatatypeDefinition } from "./definitions/ReqIFDatatypeDefinition"
+import { DatatypeDefinition } from "./content/ReqIFDefinition"
 
 export class ReqIFContent {
     datatypes: DatatypeDefinition[];

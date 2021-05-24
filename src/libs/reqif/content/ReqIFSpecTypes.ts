@@ -1,5 +1,4 @@
-import { AttributeDefinition } from "../definitions/ReqIFAttributeDefinition";
-import { AttributeValue } from "../definitions/ReqIFAttributeValue";
+import { AttributeDefinition, AttributeValue } from "./ReqIFDefinition";
 import { Identifiable } from "../ReqIFIdentifiable"
 import { RelationGroup } from "./ReqIFRelationGroup";
 import { Specification } from "./ReqIFSpecification";
@@ -84,7 +83,5 @@ export class SpecHierarchy extends SpecElementWithAttributes {
         this.parent = new SpecHierarchy();
         this.children = []; //ordered
         this.specObjects = [];
-        
-    
     }
 }
