@@ -1,6 +1,5 @@
-import { AccessControlledElement } from "../../ReqIFAccessControlledElement"
-import { DatatypeDefinitionEnumeration } from "./ReqIFDatatypeDefinition";
-import { SpecElementWithAttributes, SpecHierarchy, SpecType } from "../ReqIFSpecTypes";
+import { SpecHierarchy, SpecType } from "../content/ReqIFSpecTypes";
+import { AccessControlledElement } from "../ReqIFAccessControlledElement";
 import { AttributeValue, AttributeValueBoolean, AttributeValueDate, AttributeValueEnumeration, AttributeValueInteger, AttributeValueReal, AttributeValueString, AttributeValueXHTML } from "./ReqIFAttributeValue";
 
 

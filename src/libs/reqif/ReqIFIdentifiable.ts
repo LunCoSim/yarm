@@ -23,9 +23,9 @@ export class AlternativeID {
     identifier: string;
     ident: Identifiable;
 
-    constructor() {
+    constructor(backlink?: Identifiable) {
         this.identifier = "";
-        this.ident = new Identifiable();
+        this.ident = backlink || new Identifiable();
     }
 }
 

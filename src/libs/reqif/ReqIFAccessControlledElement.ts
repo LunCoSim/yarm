@@ -1,4 +1,4 @@
-import {Identifiable} from "./ReqIFIdentifiable"
+import { Identifiable } from "./ReqIFIdentifiable"
 
 //----------------------
 //Access restriction

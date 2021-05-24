@@ -1,7 +1,8 @@
 //AttributeValue
 
 import { SpecElementWithAttributes } from "../content/ReqIFSpecTypes";
-import { AttributeDefinition } from "./ReqIFAttributeDefinition";
+import { AttributeDefinition, AttributeDefinitionBoolean, AttributeDefinitionDate, AttributeDefinitionEnumeration, AttributeDefinitionInteger, AttributeDefinitionReal, AttributeDefinitionString, AttributeDefinitionXHTML } from "./ReqIFAttributeDefinition";
+import { DatatypeDefinitionEnumeration } from "./ReqIFDatatypeDefinition";
 
 //should be abstract class
 export class AttributeValue {
