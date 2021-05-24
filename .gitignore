@@ -4,7 +4,7 @@ node_modules
 
 #reqif-samples
 /reqif-samples
-
+/src/libs/build
 
 # local env files
 .env.local
