@@ -1,6 +1,6 @@
-import { SpecType } from "./ReqIFSpecTypes";
-import { SpecHierarchy } from "./ReqIFSpecification";
-import { AccessControlledElement, SpecElementWithAttributes } from "../ReqIFBasicClasses";
+import { SpecType } from "../content/ReqIFSpecTypes";
+import { SpecHierarchy } from "../content/ReqIFSpecification";
+import { AccessControlledElement, SpecElementWithAttributes } from "./ReqIFBasicClasses";
 
 /*
 ------------------------------------------------------------------------------
@@ -18,20 +18,11 @@ export class DatatypeDefinition {
 
 
 export class AttributeDefinition extends AccessControlledElement{
-    specType = SpecType;
+    specType: SpecType;
 
-    definition: AttributeValue;
-    owningDefinition?: AttributeValue; //set back to parent for default values!
-
-    editableAttrs: SpecHierarchy;
-
-    constructor(definition?:AttributeValue, owningDefinition?: AttributeValue, editableAttrs?:SpecHierarchy) {
+    constructor(specType: SpecType) {
         super();
-
-        this.definition = definition || new AttributeValue();
-        this.owningDefinition = owningDefinition || new AttributeValue();
-        this.editableAttrs = editableAttrs || new SpecHierarchy();
-
+        this.specType = specType;
     }
 }
 

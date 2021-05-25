@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 //Identifiable
 
-import { AttributeValue } from "./content/ReqIFDefinition";
+import { AttributeValue } from "./ReqIFDefinition";
 
 //TODO How to connect Identifiable and AlternativeID???? check page 29 figure 10.2 from ReqIF spec
 export class Identifiable {
