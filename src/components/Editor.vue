@@ -2,11 +2,11 @@
   <div id="editorjs"></div>
 </template>
 
-<script>
+<script lang="ts">
 import EditorJS from '@editorjs/editorjs';
-import {TreeNode} from '@/entities/TreeNode';
+import Vue from "vue";
 
-export default {
+export default Vue.extend({
   name: "Editor",
   props: {
     activeNode: {
@@ -36,12 +36,17 @@ export default {
             "text": "Please select node in menu."
           }
         }]
-      }
+      },
+      onChange: this.onChange,
     })
-
-
+  },
+  methods: {
+    async onChange() {
+      const res = await this.editor.save()
+      this.$emit('input', res.blocks);
+    }
   }
-}
+})
 </script>
 
 <style scoped>

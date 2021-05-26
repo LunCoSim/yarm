@@ -51,11 +51,14 @@
   </v-app>
 </template>
 
-<script>
+
+<script lang="ts">
+import Vue from 'vue'
 import Editor from "@/components/Editor";
 import {findTreeNodeById} from "@/utils/findTreeNodeById";
 
-export default {
+export default Vue.extend({
+  name: 'App.vue',
   components: {Editor},
   data: () => {
     return ({
@@ -82,6 +85,5 @@ export default {
       reader.readAsText(files);
     }
   }
-}
-
+})
 </script>
