@@ -15,7 +15,11 @@
           activatable
           :items="this.$store.state.treeData"
           @update:active="selectNode"
-      ></v-treeview>
+      >
+        <template slot="label" slot-scope="{ item }">
+          <a @click="selectNode(item)">{{ item.name }}</a>
+        </template>
+      </v-treeview>
 
     </v-navigation-drawer>
 
@@ -65,12 +69,13 @@ export default {
   },
   methods: {
     selectNode(id) {
-      this.activeNode = findTreeNodeById(id, {children: this.$store.state.treeData})
+      const _ids = id?.id ? [id.id] : id;
+      this.activeNode = findTreeNodeById(_ids[0], {children: this.$store.state.treeData, id: 0, name: '', desc: ''})
     },
     loadFile(files) {
       var reader = new FileReader();
       const commit = this.$store.commit;
-      reader.onload = function(){
+      reader.onload = function () {
         var text = reader.result;
         commit('updateTree', JSON.parse(text))
       };
