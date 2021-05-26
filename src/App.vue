@@ -87,9 +87,8 @@ export default Vue.extend({
       if (this.activeNode) {
         console.log(desc)
         this.activeNode.desc = desc;
-        const tree = JSON.parse(JSON.stringify(this.$store.state));
-        console.log(tree)
-        // this.$store.commit('updateTree', JSON.parse(JSON.stringify(this.$store.state)));
+        const tree = JSON.parse(JSON.stringify(this.$store.state.treeData));
+        this.$store.commit('updateStorage', tree);
       }
     }
   }

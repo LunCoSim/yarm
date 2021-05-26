@@ -30,7 +30,6 @@ export default Vue.extend({
           if (item.length) {
             for (let i = 0; i < item.length; i++) {
               const _item = item[i];
-              console.log({..._item})
               this.editor.blocks.insert(_item.type, {..._item.data})
             }
           } else {
