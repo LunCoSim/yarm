@@ -41,7 +41,7 @@
                 outlined
                 tile
             >
-              <Editor :activeNode="activeNode"/>
+              <Editor :activeNode="activeNode" @input="onChangeNode"/>
             </v-card>
           </v-col>
         </v-row>
@@ -68,7 +68,6 @@ export default Vue.extend({
   },
   mounted() {
     this.$store.commit('restoreTree')
-    this.activeNode = this.$store.state.treeData[0];
   },
   methods: {
     selectNode(id) {
@@ -83,6 +82,15 @@ export default Vue.extend({
         commit('updateTree', JSON.parse(text))
       };
       reader.readAsText(files);
+    },
+    onChangeNode(desc: string) {
+      if (this.activeNode) {
+        console.log(desc)
+        this.activeNode.desc = desc;
+        const tree = JSON.parse(JSON.stringify(this.$store.state));
+        console.log(tree)
+        // this.$store.commit('updateTree', JSON.parse(JSON.stringify(this.$store.state)));
+      }
     }
   }
 })

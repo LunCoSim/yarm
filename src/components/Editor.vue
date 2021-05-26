@@ -18,11 +18,25 @@ export default Vue.extend({
   }),
   watch: {
     activeNode: function (newVal, oldVal) {
+      console.log('activeNode')
       if (this.editor.blocks && newVal) {
         this.editor.blocks.clear()
-        this.editor.blocks.insert('paragraph', {
-          "text": newVal.desc
-        })
+        if (typeof newVal.desc == 'string') {
+          this.editor.blocks.insert('paragraph', {
+            "text": newVal.desc
+          })
+        } else {
+          const item = newVal.desc;
+          if (item.length) {
+            for (let i = 0; i < item.length; i++) {
+              const _item = item[i];
+              console.log({..._item})
+              this.editor.blocks.insert(_item.type, {..._item.data})
+            }
+          } else {
+            this.editor.blocks.insert(item.type, {...item})
+          }
+        }
       }
     }
   },
