@@ -1,5 +1,5 @@
-import { AttributeDefinition } from "./ReqIFDefinition";
-import { Identifiable } from "../ReqIFBasicClasses"
+import { AttributeDefinition } from "../definitions/ReqIFDefinition";
+import { Identifiable } from "../definitions/ReqIFBasicClasses";
 import { RelationGroup } from "./ReqIFRelationGroup";
 import { Specification } from "./ReqIFSpecification";
 import { SpecObject } from "./ReqIFSpecObject";

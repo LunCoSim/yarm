@@ -1,8 +1,7 @@
-import { SpecElementWithAttributes } from "../ReqIFBasicClasses";
+import { SpecElementWithAttributes } from "../definitions/ReqIFBasicClasses";
 import { RelationGroup } from "./ReqIFRelationGroup";
 import { SpecObject } from "./ReqIFSpecObject";
 import { SpecificationType } from "./ReqIFSpecTypes";
-
 
 export class Specification extends SpecElementWithAttributes {
     type: SpecificationType;

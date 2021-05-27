@@ -1,5 +1,4 @@
 import { SpecType } from "../content/ReqIFSpecTypes";
-import { SpecHierarchy } from "../content/ReqIFSpecification";
 import { AccessControlledElement, SpecElementWithAttributes } from "./ReqIFBasicClasses";
 
 /*
@@ -9,20 +8,20 @@ Basic abstract classes
 */
 
 export class DatatypeDefinition {
-    type = AttributeDefinition;
+    // type: AttributeDefinition;
 
     constructor() {
-        true;//to prevent compiler error
+        // type = new AttributeDefinition();
     }
 }
 
 
-export class AttributeDefinition extends AccessControlledElement{
-    specType: SpecType;
+export class AttributeDefinition extends AccessControlledElement {
+    // specType: SpecType;
 
-    constructor(specType: SpecType) {
+    constructor(specType?: SpecType) {
         super();
-        this.specType = specType;
+        // this.spectype = specType;
     }
 }
 
@@ -43,7 +42,7 @@ Simple class
 */
 
 export class DatatypeDefinitionSimple extends DatatypeDefinition {
-    type = AttributeDefinitionSimple;
+    // type: AttributeDefinitionSimple;
 
     constructor() {
         super();
@@ -76,7 +75,7 @@ Types definition
 //XHTML
 
 export class DatatypeDefinitionXHTML extends DatatypeDefinition {
-    type = AttributeDefinitionXHTML;
+    // type: AttributeDefinitionXHTML;
 
     constructor() {
         super();
@@ -110,7 +109,7 @@ export class XhtmlContent {
 //Enumeration
 
 export class DatatypeDefinitionEnumeration extends DatatypeDefinition {
-    type = AttributeDefinitionEnumeration;
+    //type: AttributeDefinitionEnumeration;
 
     constructor() {
         super();
@@ -143,7 +142,7 @@ export class EnumValue {
 
 export class EmbeddedValue {
     key: number;
-    otherContent: any;//should be link to other content
+    otherContent: string;//should be link to other content
     
     constructor() {
         this.key = 0;
@@ -155,7 +154,7 @@ export class EmbeddedValue {
 //Boolean
 
 export class DatatypeDefinitionBoolean extends DatatypeDefinitionSimple {
-    type = AttributeDefinitionBoolean;
+    //type: AttributeDefinitionBoolean;
 
     constructor() {
         super();
@@ -187,7 +186,7 @@ export class AttributeValueBoolean extends AttributeValueSimple {
 //Date
 
 export class DatatypeDefinitionDate extends DatatypeDefinitionSimple {
-    type = AttributeDefinitionDate;
+    //type: AttributeDefinitionDate;
 }
 
 export class AttributeDefinitionDate extends AttributeDefinitionSimple {
@@ -214,7 +213,7 @@ export class AttributeValueDate extends AttributeValueSimple {
 //Integer
 
 export class DatatypeDefinitionInteger extends DatatypeDefinitionSimple {
-    type = AttributeDefinitionInteger;
+    //type: AttributeDefinitionInteger;
     max: number; //should be int
     min: number; //should be int
 
@@ -251,7 +250,7 @@ export class AttributeValueInteger extends AttributeValueSimple {
 //Real
 
 export class DatatypeDefinitionReal extends DatatypeDefinitionSimple {
-    type = AttributeDefinitionReal;
+    //type: AttributeDefinitionReal;
 
     accuracy: number;//should be int
     max: number;
@@ -290,7 +289,7 @@ export class AttributeValueReal extends AttributeValueSimple {
 //String
 
 export class DatatypeDefinitionString extends DatatypeDefinitionSimple {
-    type = AttributeDefinitionString;
+    //type: AttributeDefinitionString;
 
     maxLength: number; //should be int
 
