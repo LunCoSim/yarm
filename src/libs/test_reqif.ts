@@ -19,7 +19,16 @@ import { ReqIF } from "./reqif/ReqIF"
 
 const r = new ReqIF();
 
-const j = parse(sample_xml);
+const j = parse(sample_xml, {
+    ignoreAttributes : false,
+});
 
-console.log(j["REQ-IF"]['THE-HEADER']);
+let reqif = j['REQ-IF'];
+let header = reqif['THE-HEADER']['REQ-IF-HEADER'];
+let content = reqif['CORE-CONTENT']['REQ-IF-CONTENT'];
+//content properties
+let datatypes = content['DATATYPES'];
+let specTypes = content['SPEC-TYPES'];
+let specObjects = content['SPEC-OBJECTS'];
+let specifications = content['SPECIFICATIONS'];
 
