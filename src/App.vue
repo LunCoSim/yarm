@@ -48,8 +48,12 @@
 </template>
 
 <script>
+import "yreqif/tests/test_reqif"; //Demonstation import of reqif. Check web console for output
+
 import Editor from "@/components/Editor";
 import {findTreeNodeById} from "@/utils/findTreeNodeById";
+
+
 
 export default {
   components: {Editor},
