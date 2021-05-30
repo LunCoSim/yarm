@@ -50,14 +50,48 @@ export function getTreeNodes(yreqif: yReqIF): TreeNode [] {
     addChildren(content, specifications);
 
     const dataTypes = yreqif.reqif.coreContent?.dataTypes;
+    const spectypes = yreqif.reqif.coreContent?.specTypes;
+    const specobjects = yreqif.reqif.coreContent?.specObjects;
+    const Specifications = yreqif.reqif.coreContent?.specifications;
 
-    for(const datatype in dataTypes) {
-        const dt = dataTypes[parseInt(datatype)];
+
+    for(const i in dataTypes) {
+        const dt = dataTypes[parseInt(i)];
 
         const longName = dt["identifier"] || "";
         const desc = dt.desc || "";
 
         addChildren(datatypes, makeNode(longName, desc, []));
     }
+
+    for(const i in spectypes) {
+        const dt = spectypes[parseInt(i)];
+
+        const longName = dt["identifier"] || "";
+        const desc = dt.desc || "";
+
+        addChildren(specTypes, makeNode(longName, desc, []));
+    }
+
+    for(const i in specobjects) {
+        const dt = specobjects[parseInt(i)];
+
+        const longName = dt["identifier"] || "";
+        const desc = dt.desc || "";
+
+        addChildren(specObjects, makeNode(longName, desc, []));
+    }
+
+    for(const i in Specifications) {
+        const sp = Specifications[parseInt(i)];
+
+        const longName = sp["identifier"] || "";
+        const desc = sp.desc || "";
+
+        const specNode = makeNode(longName, desc, []);
+        //TODO: add specs that inside
+        addChildren(specifications, specNode);
+    }
+
     return [root];
 }
