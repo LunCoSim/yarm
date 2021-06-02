@@ -54,9 +54,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
+// @ts-ignore
 import Editor from "@/components/Editor";
 
 import {findTreeNodeById} from "@/utils/findTreeNodeById";
+
+const _activeNode: any = null
 
 export default Vue.extend({
   name: 'App.vue',
@@ -64,19 +67,19 @@ export default Vue.extend({
   data: () => {
     return ({
       drawer: true,
-      activeNode: null,
+      activeNode: _activeNode,
     })
   },
   mounted() {
     this.$store.commit('restoreTree')
   },
   methods: {
-    selectNode(id) {
+    selectNode(id: string | any) {
       const _ids = id?.id ? [id.id] : id;
       this.activeNode = findTreeNodeById(_ids[0], {children: this.$store.state.treeData, id: 0, name: '', desc: ''})
     },
-    loadFile(files) {
-      var reader = new FileReader();
+    loadFile(files: any) {
+      const reader = new FileReader();
       const commit = this.$store.commit;
       reader.onload = function () {
         commit('updateTree', reader.result);
