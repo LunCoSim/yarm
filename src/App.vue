@@ -55,6 +55,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Editor from "@/components/Editor";
+
 import {findTreeNodeById} from "@/utils/findTreeNodeById";
 
 export default Vue.extend({
@@ -78,8 +79,7 @@ export default Vue.extend({
       var reader = new FileReader();
       const commit = this.$store.commit;
       reader.onload = function () {
-        var text = reader.result;
-        commit('updateTree', JSON.parse(text))
+        commit('updateTree', reader.result);
       };
       reader.readAsText(files);
     },
