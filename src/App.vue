@@ -15,7 +15,11 @@
           activatable
           :items="this.$store.state.treeData"
           @update:active="selectNode"
-      ></v-treeview>
+      >
+        <template slot="label" slot-scope="{ item }">
+          <a @click="selectNode(item)">{{ item.name }}</a>
+        </template>
+      </v-treeview>
 
     </v-navigation-drawer>
 
@@ -37,7 +41,7 @@
                 outlined
                 tile
             >
-              <Editor :activeNode="activeNode"/>
+              <Editor :activeNode="activeNode" @input="onChangeNode"/>
             </v-card>
           </v-col>
         </v-row>
@@ -47,13 +51,14 @@
   </v-app>
 </template>
 
-<script>
+
+<script lang="ts">
+import Vue from 'vue'
 import Editor from "@/components/Editor";
 import {findTreeNodeById} from "@/utils/findTreeNodeById";
 
-
-
-export default {
+export default Vue.extend({
+  name: 'App.vue',
   components: {Editor},
   data: () => {
     return ({
@@ -63,21 +68,29 @@ export default {
   },
   mounted() {
     this.$store.commit('restoreTree')
-    this.activeNode = this.$store.state.treeData[0];
   },
   methods: {
     selectNode(id) {
-      this.activeNode = findTreeNodeById(id, {children: this.$store.state.treeData})
+      const _ids = id?.id ? [id.id] : id;
+      this.activeNode = findTreeNodeById(_ids[0], {children: this.$store.state.treeData, id: 0, name: '', desc: ''})
     },
     loadFile(files) {
       var reader = new FileReader();
       const commit = this.$store.commit;
-      reader.onload = function() {
-        commit('updateTree', reader.result);
+      reader.onload = function () {
+        var text = reader.result;
+        commit('updateTree', JSON.parse(text))
       };
       reader.readAsText(files);
+    },
+    onChangeNode(desc: string) {
+      if (this.activeNode) {
+        console.log(desc)
+        this.activeNode.desc = desc;
+        const tree = JSON.parse(JSON.stringify(this.$store.state.treeData));
+        this.$store.commit('updateStorage', tree);
+      }
     }
   }
-}
-
+})
 </script>

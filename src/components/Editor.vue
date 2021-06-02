@@ -2,11 +2,11 @@
   <div id="editorjs"></div>
 </template>
 
-<script>
+<script lang="ts">
 import EditorJS from '@editorjs/editorjs';
-import {TreeNode} from '@/entities/TreeNode';
+import Vue from "vue";
 
-export default {
+export default Vue.extend({
   name: "Editor",
   props: {
     activeNode: {
@@ -18,11 +18,24 @@ export default {
   }),
   watch: {
     activeNode: function (newVal, oldVal) {
+      console.log('activeNode')
       if (this.editor.blocks && newVal) {
         this.editor.blocks.clear()
-        this.editor.blocks.insert('paragraph', {
-          "text": newVal.desc
-        })
+        if (typeof newVal.desc == 'string') {
+          this.editor.blocks.insert('paragraph', {
+            "text": newVal.desc
+          })
+        } else {
+          const item = newVal.desc;
+          if (item.length) {
+            for (let i = 0; i < item.length; i++) {
+              const _item = item[i];
+              this.editor.blocks.insert(_item.type, {..._item.data})
+            }
+          } else {
+            this.editor.blocks.insert(item.type, {...item})
+          }
+        }
       }
     }
   },
@@ -33,15 +46,20 @@ export default {
         blocks: [{
           "type": "paragraph",
           "data": {
-            "text": "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of connection and configuration."
+            "text": "Please select node in menu."
           }
         }]
-      }
+      },
+      onChange: this.onChange,
     })
-
-
+  },
+  methods: {
+    async onChange() {
+      const res = await this.editor.save()
+      this.$emit('input', res.blocks);
+    }
   }
-}
+})
 </script>
 
 <style scoped>

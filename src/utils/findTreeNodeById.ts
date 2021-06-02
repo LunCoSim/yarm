@@ -4,6 +4,7 @@ export function findTreeNodeById(id: number, item: TreeNode): TreeNode | undefin
     if (item.id == id) {
         return item;
     }
-    return item.children?.find((item: TreeNode) => findTreeNodeById(id, item))
+
+    return item.children?.map(item => findTreeNodeById(id, item)).find(e => e);
 }
 
