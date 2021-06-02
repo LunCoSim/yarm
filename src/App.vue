@@ -48,8 +48,6 @@
 </template>
 
 <script>
-import "yreqif/tests/test_reqif"; //Demonstation import of reqif. Check web console for output
-
 import Editor from "@/components/Editor";
 import {findTreeNodeById} from "@/utils/findTreeNodeById";
 
@@ -74,9 +72,8 @@ export default {
     loadFile(files) {
       var reader = new FileReader();
       const commit = this.$store.commit;
-      reader.onload = function(){
-        var text = reader.result;
-        commit('updateTree', JSON.parse(text))
+      reader.onload = function() {
+        commit('updateTree', reader.result);
       };
       reader.readAsText(files);
     }
