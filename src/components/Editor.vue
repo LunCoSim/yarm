@@ -6,6 +6,8 @@
 import EditorJS from '@editorjs/editorjs';
 import Vue from "vue";
 
+const _editor: any = {}
+
 export default Vue.extend({
   name: "Editor",
   props: {
@@ -14,7 +16,7 @@ export default Vue.extend({
     }
   },
   data: () => ({
-    editor: {},
+    editor: {..._editor},
   }),
   watch: {
     activeNode: function (newVal, oldVal) {
