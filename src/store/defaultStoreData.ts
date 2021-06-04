@@ -1,6 +1,6 @@
-import {TreeNode} from "@/entities/TreeNode";
+import { TreeNode } from "@/entities/TreeNode";
 
-const  data: TreeNode[] =  [
+const data: TreeNode[] =  [
     {
         id: 1,
         name: 'Applications :',

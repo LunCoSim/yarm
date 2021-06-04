@@ -26,7 +26,7 @@
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>Yarm</v-toolbar-title>
     </v-app-bar>
 
     <v-main>
@@ -57,7 +57,7 @@ import Vue from 'vue'
 
 import Editor from "@/components/Editor.vue";
 
-import {findTreeNodeById} from "@/utils/findTreeNodeById";
+import { findTreeNodeById } from "@/utils/findTreeNodeById";
 
 const _activeNode: any = null
 
