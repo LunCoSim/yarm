@@ -4,12 +4,8 @@
         v-model="drawer"
         app
     >
-      <v-container class="grey lighten-5">
-        <v-file-input
-            truncate-length="15"
-            @change="loadFile"
-        ></v-file-input>
-      </v-container>
+      
+      <LoadFile />
 
       <v-treeview
           activatable
@@ -56,6 +52,7 @@
 import Vue from 'vue'
 
 import Editor from "@/components/Editor.vue";
+import LoadFile from "@/components/LoadFile.vue";
 
 import { findTreeNodeById } from "@/utils/findTreeNodeById";
 
@@ -63,7 +60,7 @@ const _activeNode: any = null
 
 export default Vue.extend({
   name: 'App.vue',
-  components: {Editor},
+  components: {Editor, LoadFile},
   data: () => {
     return ({
       drawer: true,
@@ -77,14 +74,6 @@ export default Vue.extend({
     selectNode(id: string | any) {
       const _ids = id?.id ? [id.id] : id;
       this.activeNode = findTreeNodeById(_ids[0], {children: this.$store.state.treeData, id: 0, name: '', desc: ''})
-    },
-    loadFile(files: any) {
-      const reader = new FileReader();
-      const commit = this.$store.commit;
-      reader.onload = function () {
-        commit('updateTree', reader.result);
-      };
-      reader.readAsText(files);
     },
     onChangeNode(desc: string) {
       if (this.activeNode) {
