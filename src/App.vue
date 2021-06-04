@@ -54,8 +54,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-// @ts-ignore
-import Editor from "@/components/Editor";
+
+import Editor from "@/components/Editor.vue";
 
 import {findTreeNodeById} from "@/utils/findTreeNodeById";
 
