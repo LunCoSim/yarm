@@ -55,12 +55,16 @@ import Editor from "@/components/Editor.vue";
 import LoadFile from "@/components/LoadFile.vue";
 
 import { findTreeNodeById } from "@/utils/findTreeNodeById";
+import { TreeNode } from './entities/TreeNode';
 
 const _activeNode: any = null
 
 export default Vue.extend({
   name: 'App.vue',
-  components: {Editor, LoadFile},
+  components: {
+      Editor, 
+      LoadFile
+    },
   data: () => {
     return ({
       drawer: true,
@@ -73,10 +77,10 @@ export default Vue.extend({
   methods: {
     selectNode(id: string | any) {
       const _ids = id?.id ? [id.id] : id;
-      this.activeNode = findTreeNodeById(_ids[0], {children: this.$store.state.treeData, id: 0, name: '', desc: ''})
+      this.activeNode = findTreeNodeById(_ids[0], this.$store.state.treeData)
     },
     onChangeNode(desc: string) {
-      if (this.activeNode) {
+      if(this.activeNode) {
         console.log(desc)
         this.activeNode.desc = desc;
         const tree = JSON.parse(JSON.stringify(this.$store.state.treeData));
