@@ -7,15 +7,7 @@
       
       <LoadFile />
 
-      <v-treeview
-          activatable
-          :items="this.$store.state.treeData"
-          @update:active="selectNode"
-      >
-        <template slot="label" slot-scope="{ item }">
-          <a @click="selectNode(item)">{{ item.name }}</a>
-        </template>
-      </v-treeview>
+      <TreeView @nodeActivated="onNodeActivated" />
 
     </v-navigation-drawer>
 
@@ -53,17 +45,18 @@ import Vue from 'vue'
 
 import Editor from "@/components/Editor.vue";
 import LoadFile from "@/components/LoadFile.vue";
+import TreeView from "@/components/TreeView.vue";
 
-import { findTreeNodeById } from "@/utils/findTreeNodeById";
-import { TreeNode } from './entities/TreeNode';
+import { TreeNode } from '@/entities/TreeNode';
 
 const _activeNode: any = null
 
 export default Vue.extend({
   name: 'App.vue',
   components: {
-      Editor, 
-      LoadFile
+        Editor, 
+        LoadFile,
+        TreeView
     },
   data: () => {
     return ({
@@ -75,17 +68,17 @@ export default Vue.extend({
     this.$store.commit('restoreTree')
   },
   methods: {
-    selectNode(id: string | any) {
-      const _ids = id?.id ? [id.id] : id;
-      this.activeNode = findTreeNodeById(_ids[0], this.$store.state.treeData)
+    onNodeActivated(newNode: TreeNode) {
+      this.activeNode = newNode;
     },
     onChangeNode(desc: string) {
-      if(this.activeNode) {
-        console.log(desc)
-        this.activeNode.desc = desc;
-        const tree = JSON.parse(JSON.stringify(this.$store.state.treeData));
-        this.$store.commit('updateStorage', tree);
-      }
+        //ToDo: Implement checks and do save
+    //   if(this.activeNode) {
+    //     console.log(desc)
+    //     this.activeNode.desc = desc;
+    //     const tree = JSON.parse(JSON.stringify(this.$store.state.treeData));
+    //     this.$store.commit('updateStorage', tree);
+    //   }
     }
   }
 })
