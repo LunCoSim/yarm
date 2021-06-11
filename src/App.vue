@@ -49,7 +49,7 @@ import TreeView from "@/components/TreeView.vue";
 
 import { TreeNode } from '@/entities/TreeNode';
 
-const _activeNode: any = null
+const _activeNode: any = null;
 
 export default Vue.extend({
   name: 'App.vue',
@@ -59,10 +59,10 @@ export default Vue.extend({
         TreeView
     },
   data: () => {
-    return ({
+    return {
       drawer: true,
       activeNode: _activeNode,
-    })
+    }
   },
   mounted() {
     this.$store.commit('restoreTree')
@@ -72,6 +72,8 @@ export default Vue.extend({
       this.activeNode = newNode;
     },
     onChangeNode(desc: string) {
+      console.log(desc);
+      
         //ToDo: Implement checks and do save
     //   if(this.activeNode) {
     //     console.log(desc)
