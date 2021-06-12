@@ -32,7 +32,7 @@ export default Vue.extend({
         
     },
     mounted() {
-        console.log('asdkaksldj');
+        //
     },
     methods: {
         selectNode(id: string | any) {
