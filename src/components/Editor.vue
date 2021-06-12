@@ -3,6 +3,7 @@
 </template>
 
 <script lang="ts">
+import { TreeNode } from "@/entities/TreeNode";
 import EditorJS from "@editorjs/editorjs";
 import Vue from "vue";
 
@@ -19,27 +20,30 @@ export default Vue.extend({
     editor: { ..._editor },
   }),
   watch: {
-    activeNode: function (newVal, oldVal) {
+    activeNode: function(newVal: TreeNode, oldVal?: TreeNode) {
       console.log("activeNode");
       console.log(oldVal);
       console.log(newVal);
 
-      if (this.editor.blocks && newVal) {
+      if(this.editor.blocks && newVal) {
         this.editor.blocks.clear();
-        if (typeof newVal.desc == "string") {
+        
+        if(newVal.name) {
+          this.editor.blocks.insert("paragraph", {
+            text: newVal.name,
+          });
+        }
+
+        if(newVal.desc) {
           this.editor.blocks.insert("paragraph", {
             text: newVal.desc,
           });
-        } else {
-          const item = newVal.desc;
-          if (item.length) {
-            for (let i = 0; i < item.length; i++) {
-              const _item = item[i];
-              this.editor.blocks.insert(_item.type, { ..._item.data });
-            }
-          } else {
-            this.editor.blocks.insert(item.type, { ...item });
-          }
+        }
+
+        for(let i in newVal.children) {
+          this.editor.blocks.insert("paragraph", {
+            text: newVal.children[i].name,
+          });
         }
       }
     },
