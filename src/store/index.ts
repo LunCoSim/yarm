@@ -1,20 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import {TreeNode} from "@/entities/TreeNode";
+import { TreeNode } from "@/entities/TreeNode";
 import defaultStoreData from "@/store/defaultStoreData";
 
 //----------------
 //Some ReqIF magic
 
-import {getTreeNodes} from "@/utils/yReqIFVisualiser";
+import { getTreeNodes } from "@/utils/yReqIFVisualiser";
 
 import { yparse, extract } from "yreqif/src/yreqif/yparser";
 
-import { sample_xml, sample_xml1, sample_xml2 } from "yreqif/tests/sample_xml";
-
-const data = yparse(sample_xml1); //sample_xml2 is not supported yet
-const yreqif = extract(data);
 
 //----------------
 
