@@ -904,9 +904,9 @@
     to-fast-properties "^2.0.0"
 
 "@editorjs/editorjs@^2.21.0":
-  version "2.21.0"
-  resolved "https://registry.npmjs.org/@editorjs/editorjs/-/editorjs-2.21.0.tgz"
-  integrity sha512-0x4qFs6pJUbUTBB4FwtRD2I+eH7dMighC5n9j+HnRb2DoSj6QQOqSjGjTZwioVvCHYJ8oVlMWrVIQ/t2ppCb6Q==
+  version "2.22.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/editorjs/-/editorjs-2.22.0.tgz#440ba336e0a20898b365a316adb78debe0e92c42"
+  integrity sha512-BwHuY8hUcN3A67AykWd8uRwUWMoQQKSjfnlFD0r6W5cD/niLznxFC5iF/uA8QEVHMvU0Rl9UluHdzpZZbAB2bQ==
   dependencies:
     codex-notifier "^1.1.2"
     codex-tooltip "^1.0.2"
@@ -2766,12 +2766,12 @@ code-point-at@^1.0.0:
 
 codex-notifier@^1.1.2:
   version "1.1.2"
-  resolved "https://registry.npmjs.org/codex-notifier/-/codex-notifier-1.1.2.tgz"
+  resolved "https://registry.yarnpkg.com/codex-notifier/-/codex-notifier-1.1.2.tgz#a733079185f4c927fa296f1d71eb8753fe080895"
   integrity sha512-DCp6xe/LGueJ1N5sXEwcBc3r3PyVkEEDNWCVigfvywAkeXcZMk9K41a31tkEFBW0Ptlwji6/JlAb49E3Yrxbtg==
 
 codex-tooltip@^1.0.2:
   version "1.0.2"
-  resolved "https://registry.npmjs.org/codex-tooltip/-/codex-tooltip-1.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/codex-tooltip/-/codex-tooltip-1.0.2.tgz#81a9d3e2937658c6e5312106b47b9f094ff7be63"
   integrity sha512-oC+Bu5X/zyhbPydgMSLWKoM/+vkJMqaLWu3Dt/jZgXS3MWK23INwC5DMBrVXZSufAFk0i0SUni38k9rLMyZn/w==
 
 collection-visit@^1.0.0:
@@ -6196,7 +6196,7 @@ nan@^2.12.1, nan@^2.13.2:
 
 nanoid@^3.1.22:
   version "3.1.23"
-  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.1.23.tgz"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.23.tgz#f744086ce7c2bc47ee0a8472574d5c78e4183a81"
   integrity sha512-FiB0kzdP0FFVGDKlRLEQ1BgDzU87dy5NnzjeW9YZNt+/c3+q82EQDUwniSAUxp/F0gFNI1ZhKU1FqYsMuqZVnw==
 
 nanomatch@^1.2.9:
