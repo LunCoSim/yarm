@@ -36,6 +36,29 @@ export default Vue.extend({
         edt.blocks.insert(type, data);
       }
 
+      function displayNode(chld) {
+        if(chld.source) {
+          let txt = "<b>" + chld.source.constructor.name + "</b><br>";
+
+          for(let j in chld.source) {
+            if(j === "values") {
+              txt += "<i>values:</i> " + "<br>";
+              for(let k in chld.source[j]) {
+                txt += "    " + k + ": " + chld.source[j][k] + "<br>";
+              }
+              
+            } else if(typeof chld.source[j] == 'string' | 'number') {
+              txt += " <i>" + j + "</i>: " + chld.source[j] + "<br>";
+            } else if(chld.source[j] instanceof Date) {
+              txt += " <i>" + j + "</i>: " + chld.source[j] + "<br>";
+            } else {
+              txt += " <i>" + j + "</i>: " + chld.source[j] + "<br>";
+            }
+          }
+          return txt;
+        }
+      }
+
       if(this.editor.blocks) {
         this.editor.blocks.clear();
 
@@ -80,36 +103,29 @@ export default Vue.extend({
             //   });
             // }
           }
-
+        
           for(let i in newVal) {
               if(typeof newVal[i] == 'string' | 'number') {
                 insertNode("paragraph", {
-                  text: " " + i + ": " + newVal[i],
+                  text: " <i>" + i + "</i>: " + newVal[i],
                 });
               }
           }
 
+          let txt = displayNode(newVal);
+
+          insertNode("paragraph", {
+            text: txt,
+          });
+          
+
           for(let i in newVal.children) {
             let chld = newVal.children[i];
-            if(chld.source) {
-              let txt = "<b>" + chld.source.constructor.name + "</b><br>";
+            let txt = displayNode(chld);
 
-              for(let j in chld.source) {
-                
-                if(typeof chld.source[j] == 'string' | 'number') {
-                  txt += " " + j + ": " + chld.source[j] + "<br>";
-                } else if(chld.source[j] instanceof Date) {
-                  txt += " " + j + ": " + chld.source[j] + "<br>";
-                } else {
-                  txt += " " + j + ": " + chld.source[j] + "<br>";
-                }
-              }
-
-              insertNode("paragraph", {
-                text: txt,
-              });
-            }
-            
+            insertNode("paragraph", {
+              text: txt,
+            });            
           }
         }
         
