@@ -9754,7 +9754,7 @@ yorkie@^2.0.0:
 
 "yreqif@ssh:git@bitbucket.org:IonRod/yreqif.git":
   version "0.1.0"
-  resolved "ssh:git@bitbucket.org:IonRod/yreqif.git#5e9a20faa664efe0c94a8aa2d523db7fe1c5de30"
+  resolved "ssh:git@bitbucket.org:IonRod/yreqif.git#0dd372e1010a2114af09c7b6bd066dfaf3308ae4"
   dependencies:
     "@types/lodash" "^4.14.170"
     "@types/uuid" "^8.3.0"
