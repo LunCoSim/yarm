@@ -13,6 +13,11 @@ import Vue from "vue";
 
 const _editor = {};
 
+import { DatatypeDefinition } from "yreqif/src/reqif-naive/definitions/ReqIFDatatypeDefinition"
+import { Specification } from "yreqif/src/reqif-naive/content/ReqIFSpecification"
+import { SpecType } from "yreqif/src/reqif-naive/definitions/ReqIFSpecTypes"
+import { SpecObject } from "yreqif/src/reqif-naive/content/ReqIFSpecObject"
+
 export default Vue.extend({
   name: "Editor",
   props: {
@@ -25,27 +30,86 @@ export default Vue.extend({
   }),
   watch: {
     activeNode: function(newVal, oldVal) {
+      const edt = this.editor;
+
+      function insertNode(type, data) {
+        edt.blocks.insert(type, data);
+      }
+
       if(this.editor.blocks) {
         this.editor.blocks.clear();
 
         if(newVal) {
-          if(newVal.name) {
-            this.editor.blocks.insert("header", {
-              text: newVal.name,
-              level: 2
-            });
+          
+          //Checking source time, processing based on that
+          if(newVal.source instanceof Array) {
+            if(newVal.source[0] instanceof DatatypeDefinition) {
+              insertNode("header", {
+                text: "Definition of data types",
+                level: 1
+              });
+            } else if(newVal.source[0] instanceof SpecType) {
+              insertNode("header", {
+                text: "Definition of spec types",
+                level: 1
+              });
+            } else if(newVal.source[0] instanceof Specification) {
+              insertNode("header", {
+                text: "Definition of specifications",
+                level: 1
+              });
+            } else if(newVal.source[0] instanceof SpecObject) {
+              insertNode("header", {
+                text: "Definition of SpecObject",
+                level: 1
+              });
+            }
+          } else {
+            
+            
+            // if(newVal.name) {
+            //   insertNode("header", {
+            //     text: newVal.name,
+            //     level: 2
+            //   });
+            // }
+
+            // if(newVal.desc) {
+            //   insertNode("paragraph", {
+            //     text: newVal.desc,
+            //   });
+            // }
           }
 
-          if(newVal.desc) {
-            this.editor.blocks.insert("paragraph", {
-              text: newVal.desc,
-            });
+          for(let i in newVal) {
+              if(typeof newVal[i] == 'string' | 'number') {
+                insertNode("paragraph", {
+                  text: " " + i + ": " + newVal[i],
+                });
+              }
           }
 
           for(let i in newVal.children) {
-            this.editor.blocks.insert("paragraph", {
-              text: newVal.children[i].name,
-            });
+            let chld = newVal.children[i];
+            if(chld.source) {
+              let txt = "<b>" + chld.source.constructor.name + "</b><br>";
+
+              for(let j in chld.source) {
+                
+                if(typeof chld.source[j] == 'string' | 'number') {
+                  txt += " " + j + ": " + chld.source[j] + "<br>";
+                } else if(chld.source[j] instanceof Date) {
+                  txt += " " + j + ": " + chld.source[j] + "<br>";
+                } else {
+                  txt += " " + j + ": " + chld.source[j] + "<br>";
+                }
+              }
+
+              insertNode("paragraph", {
+                text: txt,
+              });
+            }
+            
           }
         }
         

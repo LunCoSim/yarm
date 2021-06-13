@@ -3,4 +3,5 @@ export interface TreeNode {
     name: string,
     desc: string,
     children: TreeNode[],
+    source?: unknown
 }
