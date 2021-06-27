@@ -9,7 +9,7 @@ import defaultStoreData from "@/store/defaultStoreData";
 
 import { getTreeNodes } from "@/utils/yReqIFVisualiser";
 
-import { yparse, extract } from "yreqif/src/yreqif/yparser";
+import { yparse, importXML, exportXML  } from "yreqif/src/yreqif/yparser";
 
 
 //----------------
@@ -26,18 +26,23 @@ export default new Vuex.Store({
         },
         updateTree(state, text) {
             const data = yparse(text); //sample_xml2 is not supported yet
-            const yreqif = extract(data);
+            const yreqif = importXML(data);
             const nodes = getTreeNodes(yreqif);
 
             Vue.set(state, 'treeData', nodes);
-            localStorage.setItem('items', JSON.stringify(nodes));
+            localStorage.setItem('reqif_file', exportXML(yreqif));
         },
         updateStorage(state, nodes: TreeNode[]) {
-            localStorage.setItem('items', JSON.stringify(nodes));
+            console.error('updateStorage not implemented');
+            // localStorage.setItem('items', JSON.stringify(nodes));
+            // localStorage.setItem('reqif_file', exportXML(yreqif));
         },
         restoreTree(state) {
-            if (localStorage.getItem('items')) {
-                Vue.set(state, 'treeData', JSON.parse(localStorage.getItem('items') as string));
+            if (localStorage.getItem('reqif_file')) {
+                const yreqif = importXML(localStorage.getItem('reqif_file') as string);
+                const nodes = getTreeNodes(yreqif);
+
+                Vue.set(state, 'treeData', nodes);
             }
         }
     },

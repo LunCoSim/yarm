@@ -4108,10 +4108,9 @@ fast-levenshtein@~2.0.6:
   resolved "https://registry.npmjs.org/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
-fast-xml-parser@^3.19.0:
+"fast-xml-parser@ssh://git@github.com:Yarm-requirements-management/fast-xml-parser.git":
   version "3.19.0"
-  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-3.19.0.tgz#cb637ec3f3999f51406dd8ff0e6fc4d83e520d01"
-  integrity sha512-4pXwmBplsCPv8FOY1WRakF970TjNGnGnfbOnLqjlYvMiF1SR3yOHyxMR/YCXpPTOspNF5gwudqktIP4VsWkvBg==
+  resolved "ssh://git@github.com:Yarm-requirements-management/fast-xml-parser.git#d4f086fdaaae5e64603fea1b8918a96a991ad803"
 
 fastq@^1.6.0:
   version "1.11.0"
@@ -9754,10 +9753,10 @@ yorkie@^2.0.0:
 
 "yreqif@ssh:git@bitbucket.org:IonRod/yreqif.git":
   version "0.1.0"
-  resolved "ssh:git@bitbucket.org:IonRod/yreqif.git#1829d94d8c7d729705bee757c3e29e2f8a1ddcd2"
+  resolved "ssh:git@bitbucket.org:IonRod/yreqif.git#d64425ed4279f74dfff8d25e21642f96197b9c3c"
   dependencies:
     "@types/lodash" "^4.14.170"
     "@types/uuid" "^8.3.0"
-    fast-xml-parser "^3.19.0"
+    fast-xml-parser "ssh://git@github.com:Yarm-requirements-management/fast-xml-parser.git"
     lodash "^4.17.21"
     uuid "^8.3.2"
