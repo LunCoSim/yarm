@@ -41,18 +41,18 @@ export default Vue.extend({
           let txt = "<b>" + chld.source.constructor.name + "</b><br>";
 
           for(let j in chld.source) {
+            let vals = chld.source[j];
             if(j === "values") {
               txt += "<i>values:</i> " + "<br>";
-              for(let k in chld.source[j]) {
-                txt += "    " + k + ": " + chld.source[j][k] + "<br>";
+              for(let k in vals) {
+                txt += "    " + k + ": " + vals[k] + "<br>";
               }
-              
-            } else if(typeof chld.source[j] == 'string' | 'number') {
-              txt += " <i>" + j + "</i>: " + chld.source[j] + "<br>";
-            } else if(chld.source[j] instanceof Date) {
-              txt += " <i>" + j + "</i>: " + chld.source[j] + "<br>";
+            } else if(typeof vals == 'string' | 'number') {
+              txt += " <i>" + j + "</i>: " + vals + "<br>";
+            } else if(vals instanceof Date) {
+              txt += " <i>" + j + "</i>: " + vals + "<br>";
             } else {
-              txt += " <i>" + j + "</i>: " + chld.source[j] + "<br>";
+              txt += " <i>" + j + "</i>: " + vals + "<br>";
             }
           }
           return txt;
@@ -152,8 +152,12 @@ export default Vue.extend({
     });
   },
   methods: {
-    async onChange() {
-
+    async onChange(api, block) {
+      console.log('OnChnage');
+      console.log(api);
+      console.log(block);
+      //TODO: Three cases: create, update, delete
+      
       const res = await this.editor.save();
       this.$emit("input", res.blocks);
     },
