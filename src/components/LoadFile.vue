@@ -24,16 +24,16 @@ export default Vue.extend({
     
   },
   mounted() {
-    console.log('asdkaksldj');
+    console.log('Mounted LoadFile.vue');
   },
   methods: {
-    loadFile(files: any) {
+    loadFile(file: Blob) {
       const reader = new FileReader();
       const commit = this.$store.commit;
       reader.onload = function () {
         commit('updateTree', reader.result);
       };
-      reader.readAsText(files);
+      reader.readAsText(file);
     },
   }
 })
