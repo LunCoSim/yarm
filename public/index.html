@@ -78,6 +78,9 @@
     }
   });
 
+  editor.on("didMutate", function(a, b, c) {
+    console.log(a);
+  });
   /**
    * Add handler for the Save button
    */
