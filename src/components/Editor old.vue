@@ -68,9 +68,60 @@ export default Vue.extend({
         edt.blocks.insert(type, data);
       }
 
+      
+
       if(this.editor.blocks) {
         this.editor.blocks.clear();
 
+        if(newVal) {
+          
+          //Checking source time, processing based on that
+          if(newVal.source instanceof Array) {
+            if(newVal.source[0] instanceof DatatypeDefinition) {
+              insertNode("header", {
+                text: "Definition of data types",
+                level: 1
+              });
+            } else if(newVal.source[0] instanceof SpecType) {
+              insertNode("header", {
+                text: "Definition of spec types",
+                level: 1
+              });
+            } else if(newVal.source[0] instanceof Specification) {
+              insertNode("header", {
+                text: "Definition of specifications",
+                level: 1
+              });
+            } else if(newVal.source[0] instanceof SpecObject) {
+              insertNode("header", {
+                text: "Definition of SpecObject",
+                level: 1
+              });
+            }
+          } else {
+            
+            
+            // if(newVal.name) {
+            //   insertNode("header", {
+            //     text: newVal.name,
+            //     level: 2
+            //   });
+            // }
+
+            // if(newVal.desc) {
+            //   insertNode("paragraph", {
+            //     text: newVal.desc,
+            //   });
+            // }
+          }
+        
+          // for(let i in newVal) {
+          //     if(typeof newVal[i] == 'string' | 'number') {
+          //       insertNode("ereqifheader", {
+          //         text: " <i>" + i + "</i>: " + newVal[i],
+          //       });
+          //     }
+          // }
           
           
 
