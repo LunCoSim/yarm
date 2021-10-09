@@ -56,14 +56,16 @@ class ySection {
      */
     render() {
         this.wrapper = document.createElement('div');
-        this.wrapper.classList.add('ySection');
+        this.wrapper.classList.add('ysection');
 
         this._inputId = document.createElement('input');
+        this._inputId.classList.add('inputID');
         this._inputId.placeholder = 'ID';
         this._inputId.value = this.data.id && this.data.id ? this.data.id : '';
         
         this._inputHeader = document.createElement('input');
         this._inputHeader.placeholder = 'Section';
+        this._inputHeader.classList.add('Section');
         this._inputHeader.value = this.data.header && this.data.header ? this.data.header : '';
 
         // //-------------------------

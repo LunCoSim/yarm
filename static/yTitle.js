@@ -59,11 +59,13 @@ class yTitle {
         this.wrapper.classList.add('ytitle');
 
         this._inputId = document.createElement('input');
+        this._inputId.classList.add('inputID');
         this._inputId.placeholder = 'ID';
         this._inputId.value = this.data.id && this.data.id ? this.data.id : '';
         
         this._inputTitle = document.createElement('input');
         this._inputTitle.placeholder = 'Title';
+        this._inputTitle.classList.add('Title');
         this._inputTitle.value = this.data.title && this.data.title ? this.data.title : '';
 
         // //-------------------------

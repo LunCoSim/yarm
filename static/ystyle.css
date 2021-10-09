@@ -1,3 +1,21 @@
+/* General */
+.inputID {
+    color: 	#696969;
+}
+
+.Title {
+    font-size: 30;
+}
+
+.Section {
+    font-size: 25;
+}
+
+.Requirement {
+    font-size: 12;
+}
+
+
 /* yTitle */
 
 .ytitle {
@@ -13,7 +31,6 @@
     box-sizing: border-box;
     border-radius: 3px;
     outline: none;
-    font-size: 14px;
 }
 
 .ytitle img {
@@ -51,7 +68,6 @@
     box-sizing: border-box;
     border-radius: 3px;
     outline: none;
-    font-size: 14px;
 }
 
 .ysection img {
@@ -89,7 +105,6 @@
     box-sizing: border-box;
     border-radius: 3px;
     outline: none;
-    font-size: 14px;
 }
 
 .yrequirement img {
