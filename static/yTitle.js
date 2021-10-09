@@ -45,6 +45,8 @@ class yTitle {
             id: data.id || '',
             title: data.title || '', 
         };
+
+        this.id = this.data.id;
     
         this.wrapper = undefined;
 

@@ -45,7 +45,8 @@ class ySection {
             id: data.id || '',
             header: data.header || '', 
         };
-    
+        
+        this.id = this.data.id;
         this.wrapper = undefined;
 
     }

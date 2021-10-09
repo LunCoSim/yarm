@@ -45,6 +45,8 @@ class yRequirement {
             id: data.id || '',
             content: data.content || '', 
         };
+
+        this.id = this.data.id;
     
         this.wrapper = undefined;
 
