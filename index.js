@@ -4,7 +4,8 @@ const app = express()
 const ip = "localhost"
 const port = 8000
 
-app.use(express.static('public'))
+app.use(express.static('public'));
+app.use("/dist", express.static('dist'));
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

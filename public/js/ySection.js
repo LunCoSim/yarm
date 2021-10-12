@@ -26,7 +26,9 @@ const ySectionIcons = [
     }
 ];
 
-class ySection {
+console.log('ySection');
+
+export default class ySection {
     
     // _inputId;
     // _inputHeader; //html element to hold input header

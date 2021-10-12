@@ -130,13 +130,13 @@
 
 /* Tools */
 .yTitleToolIcon {
-    content: url('icons/title.svg')
+    content: url('../icons/title.svg')
 }
 
 .ySectionToolIcon {
-    content: url('icons/section.svg')
+    content: url('../icons/section.svg')
 }
 
 .yRequirementToolIcon {
-    content: url('icons/requirement.svg')
+    content: url('../icons/requirement.svg')
 }

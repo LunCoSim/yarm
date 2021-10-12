@@ -26,7 +26,7 @@ const yRequirementIcons = [
     }
 ];
 
-class yRequirement {
+export default class yRequirement {
     
     // _inputId;
     // _inputTitle; //html element to hold input title

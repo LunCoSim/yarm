@@ -26,7 +26,9 @@ const yTitleIcons = [
     }
 ];
 
-class yTitle {
+console.log('asdkajdladklaskj');
+
+export default class yTitle {
     
     // _inputId;
     // _inputTitle; //html element to hold input title
