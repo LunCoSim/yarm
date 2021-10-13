@@ -26,7 +26,6 @@ const ySectionIcons = [
     }
 ];
 
-console.log('ySection');
 
 export default class ySection {
     
@@ -188,7 +187,7 @@ export default class ySection {
      */
      static get toolbox() {
         return {
-            title: 'Title',
+            title: 'Section',
             icon: '<i class="ySectionToolIcon"></i>'
         };
     }

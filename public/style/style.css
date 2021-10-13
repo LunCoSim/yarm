@@ -17,3 +17,14 @@ body {
     padding-right: 30px;
     
 }
+
+.menu-buttons {
+    position: fixed;
+    top: 0;
+}
+
+.ce-toolbar__actions {
+    right: none;
+    left: -65px;
+    top: 0px;
+}

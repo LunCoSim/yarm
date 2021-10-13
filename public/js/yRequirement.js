@@ -70,9 +70,15 @@ export default class yRequirement {
         this._inputContent.classList.add('Requirement');
         this._inputContent.value = this.data.content && this.data.content ? this.data.content : '';
 
+        this._inputTitle = document.createElement('input');
+        this._inputTitle.placeholder = 'Title';
+        this._inputTitle.classList.add('Title');
+        this._inputTitle.value = this.data.title && this.data.title ? this.data.title : '';
+
         // //-------------------------
 
         this.wrapper.appendChild(this._inputId);
+        this.wrapper.appendChild(this._inputTitle);
         this.wrapper.appendChild(this._inputContent);
 
         // _acceptTuneView();
@@ -113,7 +119,8 @@ export default class yRequirement {
     save(blockContent) {
         return Object.assign(this.data, {
             id: this._inputId.value,
-            content: this._inputContent.value
+            content: this._inputContent.value,
+            title: this._inputTitle.value
         });
     }
   
