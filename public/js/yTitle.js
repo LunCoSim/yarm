@@ -1,3 +1,5 @@
+import yBlock from "./yBlock";
+
 /**
  *
  * @typedef {object} yTitle — Input/Output data format for our Tool
@@ -28,7 +30,7 @@ const yTitleIcons = [
 
 console.log('asdkajdladklaskj');
 
-export default class yTitle {
+export default class yTitle extends yBlock {
     
     // _inputId;
     // _inputTitle; //html element to hold input title
@@ -40,6 +42,7 @@ export default class yTitle {
      * @param {ImageToolConfig} config — custom config that we provide to our tool's user
      */
     constructor({data, api, config}) {
+        super();
         this.api = api;
         this.config = config || {};
 
@@ -62,10 +65,10 @@ export default class yTitle {
         this.wrapper = document.createElement('div');
         this.wrapper.classList.add('ytitle');
 
-        this._inputId = document.createElement('input');
-        this._inputId.classList.add('inputID');
-        this._inputId.placeholder = 'ID';
-        this._inputId.value = this.data.id && this.data.id ? this.data.id : '';
+        // this._inputId = document.createElement('input');
+        // this._inputId.classList.add('inputID');
+        // this._inputId.placeholder = 'ID';
+        // this._inputId.value = this.data.id && this.data.id ? this.data.id : '';
         
         this._inputTitle = document.createElement('input');
         this._inputTitle.placeholder = 'Title';
@@ -74,7 +77,7 @@ export default class yTitle {
 
         // //-------------------------
 
-        this.wrapper.appendChild(this._inputId);
+        // this.wrapper.appendChild(this._inputId);
         this.wrapper.appendChild(this._inputTitle);
 
         // _acceptTuneView();
@@ -114,7 +117,7 @@ export default class yTitle {
      */
     save(blockContent) {
         return Object.assign(this.data, {
-            id: this._inputId.value,
+            // id: this._inputId.value,
             title: this._inputTitle.value
         });
     }
@@ -218,14 +221,16 @@ export default class yTitle {
      */
     static get sanitize() {
       return {
-        url: {},
-        caption: {
-            b: true,
-            a: {
-                href: true
-            },
-            i: true
-        }
+          id: {},
+          title: {}
+        // url: {},
+        // caption: {
+        //     b: true,
+        //     a: {
+        //         href: true
+        //     },
+        //     i: true
+        // }
       }
     }
 

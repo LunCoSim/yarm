@@ -2,9 +2,15 @@ import yTitle from "./js/yTitle"
 import ySection from "./js/ySection"
 import yRequirement from "./js/yRequirement"
 
-console.log(yTitle);
+import EditorJS from "../libs/editor.js/dist/editor"
+const json1 = require('ot-json1');
 
-const _data = {
+// import json1 from "ot-json1";
+
+let _event = undefined;
+let eventList = [];
+
+let _data = {
     blocks: [
         {
             type: "ytitle",
@@ -74,10 +80,14 @@ const _data = {
     ]
 };
 
+
+
+
+
 /**
    * Initialize the Editor
    */
- const editor = new EditorJS({
+ let editor = new EditorJS({
     autofocus: true,
     // defaultBlock: 'ytitle',
     tools: {
@@ -91,47 +101,93 @@ const _data = {
             class: yRequirement,
         }
     },
-    data: _data,
-    onChange: (a, b) => {
-      console.log(a);
-      console.log(b);
+    data: loadData() || _data,
+    // data: _data,
+    onChange: (_editor, event) => {
+        window._event = event;
+        let targetBlock = event['detail']['target'];
+        let index = event['detail']['index'];
+        console.log("onChange:  ", event);
+        targetBlock.save().then((data) => {
+            console.log("saved ", data);
+            let op = "no operation";
+
+            let processedData = {
+                data: data["data"],
+                type: data["tool"],
+                id: data["id"]
+            }
+
+            switch(event['type']) {
+                case 'block-changed': {
+                    op = json1.replaceOp(["blocks", index], true, processedData);
+                    let e = json1.type.apply(_data, op);
+                    console.log('Changed res: ', e);
+                } break;
+                case 'block-moved': {
+
+                } break;
+                case 'block-added': {
+
+                } break;
+                case 'block-removed': {
+
+                } break;
+            }
+            console.log(op);
+            eventList.push(op)
+        });
     }
   });
 
+  
   /**
    * Add handler for the Save button
    */
   const saveButton = document.getElementById('save-button');
   const loadButton = document.getElementById('load-button');
-  const output = document.getElementById('output');
 
   saveButton.addEventListener('click', () => {
         editor.save().then( savedData => {
-            window.localStorage.setItem("saved", JSON.stringify(savedData['blocks'], null, 4))
+            console.log(savedData);
+            window.localStorage.setItem("saved", JSON.stringify(savedData, null, 4))
         })
   })
 
   loadButton.addEventListener('click', () => {
     console.log('load button');
-    let data = window.localStorage.getItem("saved");
+    loadData();
 
-    if(data) {
-        data = JSON.parse(data)
-    }
+    // console.log("Saved data: ", data);
+    // editor.clear();
 
-    console.log("Saved data: ", data);
-    editor.clear();
-
-    for(let i in data) {
+    // for(let i in data) {
         
-        let d = data[i];
-        console.log(i, d);
-        let pos = editor.blocks.getBlocksCount();
-        editor.blocks.insert(pos, d);
-    }
+    //     let d = data[i];
+    //     console.log(i, d);
+    //     let pos = editor.blocks.getBlocksCount();
+    //     editor.blocks.insert(pos, d);
+        
+    // }
     
     // editor.setDa
 })
 
+function loadData() {
+    console.log('loadData');
+    let data = window.localStorage.getItem("saved");
+
+    console.log(data);
+    if(data) {
+        data = JSON.parse(data)
+        return data;
+    } else {
+        return _data;
+    }
+}
+
+
+//------------------------
 
 window.editor = editor;
+window.json1 = json1;

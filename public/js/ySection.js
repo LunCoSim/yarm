@@ -1,3 +1,5 @@
+import yBlock from "./yBlock"
+
 /**
  *
  * @typedef {object} ySection — Input/Output data format for our Tool
@@ -27,7 +29,7 @@ const ySectionIcons = [
 ];
 
 
-export default class ySection {
+export default class ySection extends yBlock {
     
     // _inputId;
     // _inputHeader; //html element to hold input header
@@ -39,6 +41,7 @@ export default class ySection {
      * @param {ImageToolConfig} config — custom config that we provide to our tool's user
      */
     constructor({data, api, config}) {
+        super();
         this.api = api;
         this.config = config || {};
 

@@ -1,3 +1,5 @@
+import yBlock from "./yBlock"
+
 /**
  *
  * @typedef {object} yRequirement — Input/Output data format for our Tool
@@ -26,7 +28,7 @@ const yRequirementIcons = [
     }
 ];
 
-export default class yRequirement {
+export default class yRequirement extends yBlock {
     
     // _inputId;
     // _inputTitle; //html element to hold input title
@@ -38,6 +40,7 @@ export default class yRequirement {
      * @param {ImageToolConfig} config — custom config that we provide to our tool's user
      */
     constructor({data, api, config}) {
+        super();
         this.api = api;
         this.config = config || {};
 

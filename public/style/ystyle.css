@@ -32,6 +32,7 @@
     box-sizing: border-box;
     border-radius: 3px;
     outline: none;
+    text-align: center;
 }
 
 .ytitle img {
