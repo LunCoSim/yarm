@@ -124,7 +124,9 @@ let currentData = loadData() || {..._data};
 
             switch(event['type']) {
                 case 'block-changed': {
-                    op = json1.replaceOp(["blocks", index], true, processedData);
+                    let source_data = {...currentData["blocks"][index]};
+                    console.log(source_data);
+                    op = json1.replaceOp(["blocks", index], source_data, processedData);
                 } break;
                 case 'block-moved': {
                     op = json1.moveOp(["blocks", fromIndex], ["blocks", toIndex]);
@@ -201,3 +203,5 @@ function loadData() {
 
 window.editor = editor;
 window.json1 = json1;
+window.eventList = eventList;
+window.currentData = currentData;
