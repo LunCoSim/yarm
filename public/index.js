@@ -10,7 +10,7 @@ const json1 = require('ot-json1');
 let _event = undefined;
 let eventList = [];
 
-let _data = {
+const _data = {
     blocks: [
         {
             type: "ytitle",
@@ -81,8 +81,7 @@ let _data = {
 };
 
 
-
-
+let currentData = loadData() || {..._data};
 
 /**
    * Initialize the Editor
@@ -101,40 +100,50 @@ let _data = {
             class: yRequirement,
         }
     },
-    data: loadData() || _data,
+    data: currentData,
     // data: _data,
     onChange: (_editor, event) => {
         window._event = event;
         let targetBlock = event['detail']['target'];
         let index = event['detail']['index'];
+        let fromIndex = event['detail']['fromIndex'];
+        let toIndex = event['detail']['toIndex'];
+
         console.log("onChange:  ", event);
         targetBlock.save().then((data) => {
             console.log("saved ", data);
-            let op = "no operation";
+            let op = null;
 
             let processedData = {
-                data: data["data"],
                 type: data["tool"],
-                id: data["id"]
+                id: data["id"],
+                data: data["data"],
             }
+            
+            processedData["data"]["id"] = data["id"];
 
             switch(event['type']) {
                 case 'block-changed': {
                     op = json1.replaceOp(["blocks", index], true, processedData);
-                    let e = json1.type.apply(_data, op);
-                    console.log('Changed res: ', e);
                 } break;
                 case 'block-moved': {
-
+                    op = json1.moveOp(["blocks", fromIndex], ["blocks", toIndex]);
                 } break;
                 case 'block-added': {
-
+                    op = json1.insertOp(["blocks", index], processedData);
                 } break;
                 case 'block-removed': {
-
+                    op = json1.removeOp(["blocks", index]);
                 } break;
             }
-            console.log(op);
+
+            if(op) {
+                console.log("Operation: ", op);
+                console.log("Blocks before: ", currentData.blocks);
+                currentData = json1.type.apply(currentData, op);
+                console.log("Blocks after: ", currentData.blocks);
+            }
+            
             eventList.push(op)
         });
     }
@@ -177,9 +186,10 @@ function loadData() {
     console.log('loadData');
     let data = window.localStorage.getItem("saved");
 
-    console.log(data);
+    
     if(data) {
-        data = JSON.parse(data)
+        data = JSON.parse(data);
+        console.log(data);
         return data;
     } else {
         return _data;
