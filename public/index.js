@@ -1,14 +1,19 @@
+import EditorJS from "../libs/editor.js/dist/editor"
+import DragDrop from 'editorjs-drag-drop';
+
+const json1 = require('ot-json1');
+
 import yTitle from "./js/yTitle"
 import ySection from "./js/ySection"
 import yRequirement from "./js/yRequirement"
 
-import EditorJS from "../libs/editor.js/dist/editor"
-const json1 = require('ot-json1');
 
-// import json1 from "ot-json1";
+//---------------------------------------
 
 let _event = undefined;
 let eventList = [];
+
+//---------------------------------------
 
 const _data = {
     blocks: [
@@ -80,8 +85,10 @@ const _data = {
     ]
 };
 
+//---------------------------------------
 
 let currentData = loadData() || {..._data};
+
 
 /**
    * Initialize the Editor
@@ -148,7 +155,10 @@ let currentData = loadData() || {..._data};
             
             eventList.push(op)
         });
-    }
+    },
+    onReady: () => {
+        new DragDrop(editor);
+      },
   });
 
   

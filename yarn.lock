@@ -343,6 +343,11 @@ destroy@~1.0.4:
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
   integrity sha1-l4hXRCxEdJ5CBmE+N5RiBYJqvYA=
 
+editorjs-drag-drop@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/editorjs-drag-drop/-/editorjs-drag-drop-0.2.2.tgz#b7ad4d53eae22cde4c340d83d6702780bb532f4b"
+  integrity sha512-Ey3nNvIGuyUQetE+BiEsb8n2FrZmHnm1H/t38pwBvon2X6bZ1j8mpxd7WGT0dpJJUMKPlSTH0x3KPKyvigmgWQ==
+
 ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
