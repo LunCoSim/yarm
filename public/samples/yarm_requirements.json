@@ -1,0 +1,117 @@
+{
+    "time": 1634892654631,
+    "blocks": [
+        {
+            "id": "YREQ",
+            "type": "ytitle",
+            "data": {
+                "id": "YREQ",
+                "title": "Yarm requirements"
+            }
+        },
+        {
+            "id": "GEN",
+            "type": "ysection",
+            "data": {
+                "id": "GEN",
+                "header": "General requirements"
+            }
+        },
+        {
+            "id": "TTL",
+            "type": "ysection",
+            "data": {
+                "id": "TTL",
+                "header": "Specification for Title"
+            }
+        },
+        {
+            "id": "TTL.1",
+            "type": "yrequirement",
+            "data": {
+                "id": "TTL.1",
+                "content": "Plugin shall look similar to Word/GDocs Title style",
+                "title": ""
+            }
+        },
+        {
+            "id": "TTL.2",
+            "type": "yrequirement",
+            "data": {
+                "id": "TTL.2",
+                "content": "Only one title should be in the document",
+                "title": ""
+            }
+        },
+        {
+            "id": "SEC",
+            "type": "ysection",
+            "data": {
+                "id": "SEC",
+                "header": "Specification for Sections"
+            }
+        },
+        {
+            "id": "SEC.1",
+            "type": "yrequirement",
+            "data": {
+                "id": "SEC.2",
+                "content": "Sections should have 6 levels of headings",
+                "title": ""
+            }
+        },
+        {
+            "id": "REQ",
+            "type": "ysection",
+            "data": {
+                "id": "REQ",
+                "header": "Requirements related requirements"
+            }
+        },
+        {
+            "id": "r9tPAS5xxZ",
+            "type": "ysection",
+            "data": {
+                "id": "",
+                "header": "Functional requirements"
+            }
+        },
+        {
+            "id": "gqy_qBq6bL",
+            "type": "yrequirement",
+            "data": {
+                "id": "",
+                "content": "System should allow to change block types in Editor",
+                "title": ""
+            }
+        },
+        {
+            "id": "xC1Kejkhxr",
+            "type": "yrequirement",
+            "data": {
+                "id": "",
+                "content": "Newly added block type should depend on previous block.",
+                "title": ""
+            }
+        },
+        {
+            "id": "oa9jW9cn0M",
+            "type": "yrequirement",
+            "data": {
+                "id": "",
+                "content": "Press on Enter - work inside block. Cmd+Enter - add new block",
+                "title": ""
+            }
+        },
+        {
+            "id": "CpMr6tnzEk",
+            "type": "yrequirement",
+            "data": {
+                "id": "",
+                "content": "Ctrl+S export to file",
+                "title": ""
+            }
+        }
+    ],
+    "version": "2.23.0-rc.0"
+}

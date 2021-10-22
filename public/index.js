@@ -1,5 +1,7 @@
 import EditorJS from "../libs/editor.js/dist/editor"
 import DragDrop from 'editorjs-drag-drop';
+ 
+import FileSaver from "file-saver";
 
 const json1 = require('ot-json1');
 
@@ -15,80 +17,13 @@ let eventList = [];
 
 //---------------------------------------
 
-const _data = {
-    blocks: [
-        {
-            type: "ytitle",
-            id: "YREQ",
-            data: {
-                id: "YREQ",
-                title: "Yarm requirements"
-            },
-        },
-        {
-            type: "ysection",
-            id: "GEN",
-            data: {
-                id: "GEN",
-                header: "General requirements"
-            }
-        },
-        {
-            type: "ysection",
-            id: "TTL",
-            data: {
-                id: "TTL",
-                header: "Specification for Title"
-            }
-        },
-        {
-            type: "yrequirement",
-            id: "TTL.1",
-            data: {
-                id: "TTL.1",
-                title: "",
-                content: "Plugin shall look similar to Word/GDocs Title style",
-            },
-        },
-        {
-            type: "yrequirement",
-            id: "TTL.2",
-            data: {
-                id: "TTL.2",
-                content: "Only one title should be in the document"
-            },
-        },
-        {
-            type: "ysection",
-            id: "SEC",
-            data: {
-                id: "SEC",
-                header: "Specification for Sections"
-            }
-        },
-        {
-            type: "yrequirement",
-            id: "SEC.1",
-            data: {
-                id: "SEC.2",
-                content: "Sections should have 6 levels of headings"
-            },
-        },
-        {
-            type: "ysection",
-            id: "REQ",
-            data: {
-                id: "REQ",
-                header: "Requirements related requirements"
-            }
-        },
-    ]
-};
+// import _data from './samples/initial.json';
+import _data from './samples/yarm_requirements.json';
 
 //---------------------------------------
 
-let currentData = loadData() || {..._data};
-
+// let currentData = loadData() || {..._data};
+let currentData = {..._data};
 
 /**
    * Initialize the Editor
@@ -165,34 +100,53 @@ let currentData = loadData() || {..._data};
   /**
    * Add handler for the Save button
    */
-  const saveButton = document.getElementById('save-button');
-  const loadButton = document.getElementById('load-button');
+    const saveButton = document.getElementById('save-button');
+    const loadButton = document.getElementById('load-button');
+    const importButton = document.getElementById('import-button');
+    const exportButton = document.getElementById('export-button');
 
-  saveButton.addEventListener('click', () => {
+    saveButton.addEventListener('click', () => {
         editor.save().then( savedData => {
             console.log(savedData);
             window.localStorage.setItem("saved", JSON.stringify(savedData, null, 4))
         })
-  })
+    })
 
-  loadButton.addEventListener('click', () => {
-    console.log('load button');
-    loadData();
+    loadButton.addEventListener('click', () => {
+        console.log('load button');
+        loadData();
 
-    // console.log("Saved data: ", data);
-    // editor.clear();
+        // console.log("Saved data: ", data);
+        // editor.clear();
 
-    // for(let i in data) {
+        // for(let i in data) {
+            
+        //     let d = data[i];
+        //     console.log(i, d);
+        //     let pos = editor.blocks.getBlocksCount();
+        //     editor.blocks.insert(pos, d);
+            
+        // }
         
-    //     let d = data[i];
-    //     console.log(i, d);
-    //     let pos = editor.blocks.getBlocksCount();
-    //     editor.blocks.insert(pos, d);
+        // editor.setDa
+    })
+
+    importButton.addEventListener('click', () => {
         
-    // }
-    
-    // editor.setDa
-})
+    });
+
+    exportButton.addEventListener('click', () => {
+        editor.save().then( savedData => {
+            console.log(savedData);
+            let str = JSON.stringify(savedData, null, 4);
+            console.log(str);
+            var blob = new Blob([str], {type: "text/plain;charset=utf-8"});
+
+            FileSaver.saveAs(blob, "yarm_requirements.json");
+        });
+    });
+
+//------------------------
 
 function loadData() {
     console.log('loadData');
