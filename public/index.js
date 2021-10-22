@@ -16,8 +16,13 @@ import _data from './samples/yarm_requirements.json';
 
 //---------------------------------------
 
-// let currentData = loadData() || {..._data};
-let currentData = {..._data};
+let currentData = loadData() || {..._data};
+
+// let currentData = {..._data};
+
+const saveTimeout = 3000;
+
+let shouldSave = false;
 
 /**
    * Initialize the Editor
@@ -59,7 +64,7 @@ let editor = new EditorJS({
 
             switch(event['type']) {
                 case 'block-changed': {
-                    let source_data = {...currentData["blocks"][index]};
+                    let source_data = {...currentData["data"]["blocks"][index]};
                     console.log(source_data);
                     op = json1.replaceOp(["blocks", index], source_data, processedData);
                 } break;
@@ -76,12 +81,14 @@ let editor = new EditorJS({
 
             if(op) {
                 console.log("Operation: ", op);
-                console.log("Blocks before: ", currentData.blocks);
-                currentData = json1.type.apply(currentData, op);
-                console.log("Blocks after: ", currentData.blocks);
+                console.log("Blocks before: ", currentData["data"].blocks);
+                currentData["data"] = json1.type.apply(currentData["data"], op);
+                console.log("Blocks after: ", currentData["data"].blocks);
             }
             
             currentData["history"].push(op)
+
+            shouldSave = true;
         });
     },
     onReady: () => {
@@ -90,41 +97,43 @@ let editor = new EditorJS({
 });
 
   
-  /**
-   * Add handler for the Save button
-   */
-    const saveButton = document.getElementById('save-button');
-    const loadButton = document.getElementById('load-button');
-    const importButton = document.getElementById('import-button');
-    const exportButton = document.getElementById('export-button');
+/**
+ * Add handler for the Save button
+ */
+const saveButton = document.getElementById('save-button');
+const loadButton = document.getElementById('load-button');
+const importButton = document.getElementById('import-button');
+const exportButton = document.getElementById('export-button');
 
-    saveButton.addEventListener('click', () => {
-        save().then( savedData => {
-            console.log(savedData);
-            window.localStorage.setItem("saved", JSON.stringify(savedData, null, 4))
-        })
-    })
+saveButton.addEventListener('click', () => {
+    saveToLocalStorage();
+})
 
-    loadButton.addEventListener('click', () => {
-        console.log('load button');
-        loadData();
-    })
+loadButton.addEventListener('click', () => {
+    console.log('load button');
+    loadData();
+})
 
-    importButton.addEventListener('click', () => {
-        
+importButton.addEventListener('click', () => {
+    
+});
+
+exportButton.addEventListener('click', () => {
+    save().then(savedData => {
+        console.log(savedData);
+        let str = JSON.stringify(savedData, null, 4);
+        console.log(str);
+        var blob = new Blob([str], {type: "text/plain;charset=utf-8"});
+
+        FileSaver.saveAs(blob, "yarm_requirements.json");
     });
+});
 
-    exportButton.addEventListener('click', () => {
-        save().then(savedData => {
-            console.log(savedData);
-            let str = JSON.stringify(savedData, null, 4);
-            console.log(str);
-            var blob = new Blob([str], {type: "text/plain;charset=utf-8"});
-
-            FileSaver.saveAs(blob, "yarm_requirements.json");
-        });
-    });
-
+setInterval(() => {
+    if(shouldSave) {
+        saveToLocalStorage();
+    }
+}, saveTimeout);
 //------------------------
 
 function loadData() {
@@ -149,6 +158,13 @@ function save() {
             "history": currentData["history"]
         }
         return toSave;
+    });
+}
+
+function saveToLocalStorage() {
+    save().then( savedData => {
+        console.log(savedData);
+        window.localStorage.setItem("saved", JSON.stringify(savedData, null, 4))
     });
 }
 
