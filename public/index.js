@@ -119,15 +119,18 @@ importButton.addEventListener('click', () => {
 });
 
 exportButton.addEventListener('click', () => {
-    save().then(savedData => {
-        console.log(savedData);
-        let str = JSON.stringify(savedData, null, 4);
-        console.log(str);
-        var blob = new Blob([str], {type: "text/plain;charset=utf-8"});
-
-        FileSaver.saveAs(blob, "yarm_requirements.json");
-    });
+    saveToFile();
 });
+
+document.addEventListener("keydown", function(e) {
+    console.log(e);
+
+    //Saving to file on Cmd + Shift + S
+    if ((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.code == "KeyS" && (e.shiftKey)) {
+        e.preventDefault();
+        saveToFile();
+    }
+}, false);
 
 setInterval(() => {
     if(shouldSave) {
@@ -168,6 +171,16 @@ function saveToLocalStorage() {
     });
 }
 
+function saveToFile() {
+    save().then(savedData => {
+        console.log(savedData);
+        let str = JSON.stringify(savedData, null, 4);
+        console.log(str);
+        var blob = new Blob([str], {type: "text/plain;charset=utf-8"});
+
+        FileSaver.saveAs(blob, "yarm_requirements.json");
+    });
+}
 //------------------------
 
 window.editor = editor;
