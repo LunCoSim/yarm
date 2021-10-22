@@ -1,0 +1,3 @@
+[submodule "libs/header"]
+	path = libs/header
+	url = git@github.com:editor-js/header.git
