@@ -35,10 +35,23 @@ body {
 }
 
 .ce-block {
+    border-top: 1px solid transparent;
     border-bottom: 1px solid #e4e4e4;
 }
 
 .ce-block--focused {
     border-top: 1px solid green;
     border-bottom: 1px solid green;
+    
+}
+
+/*  */
+[contentEditable=true]:empty:not(:focus):before {
+    content:attr(placeholder);
+    color: grey;
+}
+
+[contentEditable=true]:empty:focus:before {
+    content:attr(placeholder);
+    color: grey;
 }

@@ -65,13 +65,14 @@ export default class ySection extends yBlock {
 
         this._inputId = document.createElement('input');
         this._inputId.classList.add('inputID');
-        this._inputId.placeholder = 'ID';
+        this._inputId.setAttribute("placeholder", 'ID');
         this._inputId.value = this.data.id && this.data.id ? this.data.id : '';
         
-        this._inputHeader = document.createElement('input');
-        this._inputHeader.placeholder = 'Section';
+        this._inputHeader = document.createElement('div');
+        this._inputHeader.contentEditable = "true";
+        this._inputHeader.setAttribute("placeholder", 'Section');
         this._inputHeader.classList.add('Section');
-        this._inputHeader.value = this.data.header && this.data.header ? this.data.header : '';
+        this._inputHeader.innerHTML = this.data.header && this.data.header ? this.data.header : '';
 
         // //-------------------------
 
@@ -115,8 +116,8 @@ export default class ySection extends yBlock {
      */
     save(blockContent) {
         return Object.assign(this.data, {
-            id: this._inputId.value,
-            header: this._inputHeader.value
+            id: this._inputId.innerHTML,
+            header: this._inputHeader.innerHTML
         });
     }
   

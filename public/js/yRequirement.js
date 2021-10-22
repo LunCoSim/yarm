@@ -69,15 +69,17 @@ export default class yRequirement extends yBlock {
         this._inputId.classList.add('inputID');
         this._inputId.value = this.data.id && this.data.id ? this.data.id : '';
         
-        this._inputContent = document.createElement('input');
-        this._inputContent.placeholder = 'Content';
-        this._inputContent.classList.add('Requirement');
-        this._inputContent.value = this.data.content && this.data.content ? this.data.content : '';
-
-        this._inputTitle = document.createElement('input');
-        this._inputTitle.placeholder = 'Title';
+        this._inputTitle = document.createElement('div');
+        this._inputTitle.contentEditable = "true";
+        this._inputTitle.setAttribute("placeholder", 'Title');
         this._inputTitle.classList.add('Title');
-        this._inputTitle.value = this.data.title && this.data.title ? this.data.title : '';
+        this._inputTitle.innerHTML = this.data.title && this.data.title ? this.data.title : '';
+
+        this._inputContent = document.createElement('div');
+        this._inputContent.contentEditable = "true";
+        this._inputContent.setAttribute("placeholder", 'Content');
+        this._inputContent.classList.add('Requirement');
+        this._inputContent.innerHTML = this.data.content && this.data.content ? this.data.content : '';
 
         // //-------------------------
 
@@ -152,9 +154,9 @@ export default class yRequirement extends yBlock {
      */
     save(blockContent) {
         return Object.assign(this.data, {
-            id: this._inputId.value,
-            content: this._inputContent.value,
-            title: this._inputTitle.value
+            id: this._inputId.innerHTML,
+            content: this._inputContent.innerHTML,
+            title: this._inputTitle.innerHTML
         });
     }
   

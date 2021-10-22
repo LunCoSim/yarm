@@ -70,10 +70,11 @@ export default class yTitle extends yBlock {
         this._inputId.placeholder = 'ID';
         this._inputId.value = this.data.id && this.data.id ? this.data.id : '';
         
-        this._inputTitle = document.createElement('input');
-        this._inputTitle.placeholder = 'Title';
+        this._inputTitle = document.createElement('div');
+        this._inputTitle.setAttribute("placeholder", 'Title');
         this._inputTitle.classList.add('Title');
-        this._inputTitle.value = this.data.title && this.data.title ? this.data.title : '';
+        this._inputTitle.innerHTML = this.data.title && this.data.title ? this.data.title : '';
+        this._inputTitle.contentEditable = "true";
 
         // //-------------------------
 
@@ -117,8 +118,8 @@ export default class yTitle extends yBlock {
      */
     save(blockContent) {
         return Object.assign(this.data, {
-            // id: this._inputId.value,
-            title: this._inputTitle.value
+            id: this._inputId.innerHTML,
+            title: this._inputTitle.innerHTML
         });
     }
   

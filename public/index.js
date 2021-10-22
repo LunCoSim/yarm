@@ -27,6 +27,8 @@ let shouldSave = false;
 /**
    * Initialize the Editor
    */
+
+
 let editor = new EditorJS({
     autofocus: true,
     // defaultBlock: 'ytitle',
