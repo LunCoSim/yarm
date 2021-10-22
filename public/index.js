@@ -9,12 +9,6 @@ import yTitle from "./js/yTitle"
 import ySection from "./js/ySection"
 import yRequirement from "./js/yRequirement"
 
-
-//---------------------------------------
-
-let _event = undefined;
-let eventList = [];
-
 //---------------------------------------
 
 // import _data from './samples/initial.json';
@@ -28,7 +22,7 @@ let currentData = {..._data};
 /**
    * Initialize the Editor
    */
- let editor = new EditorJS({
+let editor = new EditorJS({
     autofocus: true,
     // defaultBlock: 'ytitle',
     tools: {
@@ -42,8 +36,7 @@ let currentData = {..._data};
             class: yRequirement,
         }
     },
-    data: currentData,
-    // data: _data,
+    data: currentData["data"],
     onChange: (_editor, event) => {
         window._event = event;
         let targetBlock = event['detail']['target'];
@@ -88,13 +81,13 @@ let currentData = {..._data};
                 console.log("Blocks after: ", currentData.blocks);
             }
             
-            eventList.push(op)
+            currentData["history"].push(op)
         });
     },
     onReady: () => {
         new DragDrop(editor);
-      },
-  });
+    },
+});
 
   
   /**
@@ -106,7 +99,7 @@ let currentData = {..._data};
     const exportButton = document.getElementById('export-button');
 
     saveButton.addEventListener('click', () => {
-        editor.save().then( savedData => {
+        save().then( savedData => {
             console.log(savedData);
             window.localStorage.setItem("saved", JSON.stringify(savedData, null, 4))
         })
@@ -136,7 +129,7 @@ let currentData = {..._data};
     });
 
     exportButton.addEventListener('click', () => {
-        editor.save().then( savedData => {
+        save().then( savedData => {
             console.log(savedData);
             let str = JSON.stringify(savedData, null, 4);
             console.log(str);
@@ -162,6 +155,16 @@ function loadData() {
     }
 }
 
+function save() {
+    return editor.save().then( savedData => {
+        console.log(savedData);
+        let toSave = {
+            "data": savedData,
+            "history": currentData["history"]
+        }
+        return toSave;
+    });
+}
 
 //------------------------
 
