@@ -27,6 +27,11 @@ body {
     right: none;
     left: -65px;
     top: 0px;
+    width: min-content;
+}
+
+.ce-toolbar__actions-buttons {
+    width: min-content;
 }
 
 .ce-block {
