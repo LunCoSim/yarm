@@ -19,7 +19,7 @@
     "webpack-cli": "^4.9.0"
   },
   "scripts": {
-    "start": "yarn bundle && node server.js",
-    "bundle": "webpack-cli"
+    "start": "yarn bundle & node server.js",
+    "bundle": "webpack-cli --mode development --watch"
   }
 }
