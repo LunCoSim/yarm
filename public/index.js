@@ -108,20 +108,6 @@ let editor = new EditorJS({
     loadButton.addEventListener('click', () => {
         console.log('load button');
         loadData();
-
-        // console.log("Saved data: ", data);
-        // editor.clear();
-
-        // for(let i in data) {
-            
-        //     let d = data[i];
-        //     console.log(i, d);
-        //     let pos = editor.blocks.getBlocksCount();
-        //     editor.blocks.insert(pos, d);
-            
-        // }
-        
-        // editor.setDa
     })
 
     importButton.addEventListener('click', () => {
@@ -129,7 +115,7 @@ let editor = new EditorJS({
     });
 
     exportButton.addEventListener('click', () => {
-        save().then( savedData => {
+        save().then(savedData => {
             console.log(savedData);
             let str = JSON.stringify(savedData, null, 4);
             console.log(str);
@@ -170,5 +156,4 @@ function save() {
 
 window.editor = editor;
 window.json1 = json1;
-window.eventList = eventList;
 window.currentData = currentData;

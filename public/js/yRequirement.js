@@ -46,6 +46,7 @@ export default class yRequirement extends yBlock {
 
         this.data = {
             id: data.id || '',
+            title: data.title || '',
             content: data.content || '', 
         };
 
@@ -113,7 +114,37 @@ export default class yRequirement extends yBlock {
     
         return wrapper;
     }
-  
+    
+    static get conversionConfig() {
+        return {
+            export: (data) => {
+                return {
+                    "id": this.data['id'],
+                    "title": this.data['title'],
+                    "content": this.data['content'],
+                    "text": this.data['title'] + " " + this.data['content']
+                }
+            },
+            import: (data) => {
+                console.log('askldjaklsdjlaksjdlk');
+                console.log(data);
+
+                if (typeof data === 'string' || data instanceof String) {
+                    // it's a string
+                    return {
+                        'content': data,
+                    };
+                } else {
+                    // it's something else
+
+                    return {
+                        'id': data['id'] || '',
+                        'content': data['text'],
+                    }
+                }
+            }
+        }
+    }
     /**
      * Extract data from the UI
      * @param {HTMLElement} blockContent — element returned by render method
